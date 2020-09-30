@@ -1,0 +1,5 @@
+cyber security,Pr3,cyber security skills,Own3,N4 P3 A2 W1
+Digital strategy,Pr4,Digital strategy skills,Own4,N4 P3 A2 W1
+java sills,Pr5,java langueage,Own5,P4 N3 A2 W1
+defence technology,Pr7,password skills,Own7,P4 A3 W2 N1
+apple,Pr9,swift,Own9,P4 A3 W2 N1
