@@ -38,7 +38,10 @@ public class Controller {
 	Team t3;
 	Team t4;
 	Team t5;
+//	HashMap<String, CheckBox> swapCheckBox = new HashMap<String, CheckBox>();
 	List<CheckBox> swapCheckBox = new ArrayList<CheckBox>();
+	List<String> swapCheckBox1 = new ArrayList<String>();
+	HashMap<String, Map<String,Student>> swapMap = new HashMap<String, Map<String,Student>>();
 	HashMap<String, CheckBox> checkBoxMap = new HashMap<String, CheckBox>();
 	HashMap<String, TextField> textMap = new HashMap<String, TextField>();
 	Map<String, Student> sMap1 = new HashMap<String, Student>();
@@ -46,6 +49,7 @@ public class Controller {
 	Map<String, Student> sMap3 = new HashMap<String, Student>();
 	Map<String, Student> sMap4 = new HashMap<String, Student>();
 	Map<String, Student> sMap5 = new HashMap<String, Student>();
+	Map<String, Student> allStudents = new HashMap<String, Student>();
 
 	@FXML
 	private TableView<Student> tableTeam;
@@ -300,26 +304,26 @@ public class Controller {
 		checkBoxMap.put("t52", team5checkbox2);
 		checkBoxMap.put("t53", team5checkbox3);
 		checkBoxMap.put("t54", team5checkbox4);
-//		textMap.put("t11", team1Student1);
-//		textMap.put("t12", team1Student2);
-//		textMap.put("t13", team1Student3);
-//		textMap.put("t14", team1Student4);
-//		textMap.put("t21", team2Student1);
-//		textMap.put("t22", team2Student2);
-//		textMap.put("t23", team2Student3);
-//		textMap.put("t24", team2Student4);
-//		textMap.put("t31", team3Student1);
-//		textMap.put("t32", team3Student2);
-//		textMap.put("t33", team3Student3);
-//		textMap.put("t34", team3Student4);
-//		textMap.put("t41", team4Student1);
-//		textMap.put("t42", team4Student2);
-//		textMap.put("t43", team4Student3);
-//		textMap.put("t44", team4Student4);
-//		textMap.put("t51", team5Student1);
-//		textMap.put("t52", team5Student2);
-//		textMap.put("t53", team5Student3);
-//		textMap.put("t54", team5Student4);
+		swapMap.put("t11", sMap1);
+		swapMap.put("t12", sMap1);
+		swapMap.put("t13", sMap1);
+		swapMap.put("t14", sMap1);
+		swapMap.put("t21", sMap2);
+		swapMap.put("t22", sMap2);
+		swapMap.put("t23", sMap2);
+		swapMap.put("t24", sMap2);
+		swapMap.put("t31", sMap3);
+		swapMap.put("t32", sMap3);
+		swapMap.put("t33", sMap3);
+		swapMap.put("t34", sMap3);
+		swapMap.put("t41", sMap4);
+		swapMap.put("t42", sMap4);
+		swapMap.put("t43", sMap4);
+		swapMap.put("t44", sMap4);
+		swapMap.put("t51", sMap5);
+		swapMap.put("t52", sMap5);
+		swapMap.put("t53", sMap5);
+		swapMap.put("t54", sMap5);
 
 		// read the data from milestone2
 		dh.readAll();
@@ -328,6 +332,7 @@ public class Controller {
 		// add student in ChoiceBox
 		for (Student s : dh.studentSkillSetList) {
 			Studentbox.getItems().addAll(s);
+			allStudents.put(s.getId(), s);
 		}
 
 		// setting the Barchar.
@@ -352,13 +357,19 @@ public class Controller {
 					.addListener((ObservableValue<? extends Boolean> ov, Boolean old_val, Boolean new_val) -> {
 						if (old_val == false && new_val == true) {
 							swapCheckBox.add(checkBoxMap.get(s));
-							System.out.println(swapCheckBox.toString());
+							swapCheckBox1.add(s);				
 							System.out.println(checkBoxMap.get(s).getText());
+							System.out.println(swapCheckBox.toString());
+							System.out.println(swapCheckBox1.toString());
+							
 
 						} else if (old_val == true && new_val == false) {
+							
 							swapCheckBox.remove(checkBoxMap.get(s));
+							swapCheckBox1.remove(s);
 							System.out.println(checkBoxMap.get(s).getText());
 							System.out.println(swapCheckBox.toString());
+							System.out.println(swapCheckBox1.toString());
 						}
 
 					});
@@ -424,7 +435,7 @@ public class Controller {
 	void swapButton(ActionEvent event) {
 		if (swapCheckBox.size() == 2) {
 			swap(swapCheckBox.get(0), swapCheckBox.get(1));
-			swapMap(swapCheckBox.get(0).getText(), swapCheckBox.get(1).getText());
+			swapMap(swapCheckBox1.get(0), swapCheckBox1.get(1));
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setContentText(ErrorMessages.INVALID_SWAP_CHECKBOX);
@@ -444,8 +455,48 @@ public class Controller {
 	}
 
 	public void swapMap(String a, String b) {
+		//get the checkBoxMap key.
+		
+		System.out.println("==========print the swapMap============");
+		System.out.println(swapCheckBox.get(1).getText());
+		swapMap.get(a).remove(swapCheckBox.get(1).getText());
+		System.out.println(swapMap.get(a));
+		
+		swapMap.get(a).put(swapCheckBox.get(0).getText(), allStudents.get(swapCheckBox.get(0).getText()));
+		System.out.println(swapMap.get(a));
+		
+		System.out.println(swapCheckBox.get(0).getText());
+		swapMap.get(b).remove(swapCheckBox.get(0).getText());
+		System.out.println(swapMap.get(b));
+		swapMap.get(b).put(swapCheckBox.get(1).getText(), allStudents.get(swapCheckBox.get(1).getText()));
+		swapMap.get(b);
+		System.out.println("==========print the swapMap============");
+
+		
+			
+	}
+
+
+
+	
+	
+	
 	
 
+	
+	public static Object getKey(Map map, Object value){
+		Object kk =null;
+	    List<Object> keyList = new ArrayList<>();
+	    for(Object key: map.keySet()){
+	        if(map.get(key).equals(value)){
+	            keyList.add(key);
+	        }
+	    }
+	    for(Object k : keyList) {
+	    	kk =k;
+	    }
+	    
+	    return kk.toString();
 	}
 
 	@FXML
