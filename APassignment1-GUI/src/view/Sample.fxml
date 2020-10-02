@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1148.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1196.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
    <children>
       <Button fx:id="add" layoutX="169.0" layoutY="314.0" mnemonicParsing="false" onAction="#addButton" text="Add" />
       <GridPane fx:id="team1" layoutX="36.0" layoutY="51.0" style="-fx-background-color: orange; -fx-border-color: black;">
@@ -36,7 +36,7 @@
                <opaqueInsets>
                   <Insets />
                </opaqueInsets></CheckBox>
-            <Label prefHeight="15.0" prefWidth="47.0" text="Team1" />
+            <Label onMouseClicked="#team1detail" prefHeight="15.0" prefWidth="47.0" text="Team1" />
             <CheckBox fx:id="team1checkbox2" mnemonicParsing="false" prefHeight="18.0" prefWidth="132.0" style="-fx-background-color: white;" GridPane.rowIndex="2" />
             <CheckBox fx:id="team1checkbox3" mnemonicParsing="false" prefHeight="18.0" prefWidth="116.0" style="-fx-background-color: white;" GridPane.rowIndex="3" />
             <CheckBox fx:id="team1checkbox4" mnemonicParsing="false" prefHeight="18.0" prefWidth="153.0" style="-fx-background-color: white;" GridPane.rowIndex="4" />
@@ -56,7 +56,7 @@
          </rowConstraints>
          <children>
             <CheckBox fx:id="team2checkbox1" mnemonicParsing="false" prefHeight="18.0" prefWidth="154.0" style="-fx-background-color: white;" GridPane.rowIndex="1" />
-            <Label text="Team2" />
+            <Label onMouseClicked="#team2detail" text="Team2" />
             <CheckBox fx:id="team2checkbox2" mnemonicParsing="false" prefHeight="18.0" prefWidth="146.0" style="-fx-background-color: white;" GridPane.rowIndex="2" />
             <CheckBox fx:id="team2checkbox3" mnemonicParsing="false" prefHeight="18.0" prefWidth="139.0" style="-fx-background-color: white;" GridPane.rowIndex="3" />
             <CheckBox fx:id="team2checkbox4" mnemonicParsing="false" prefHeight="18.0" prefWidth="167.0" style="-fx-background-color: white;" GridPane.rowIndex="4" />
@@ -76,7 +76,7 @@
          </rowConstraints>
          <children>
             <CheckBox fx:id="team3checkbox1" mnemonicParsing="false" prefHeight="18.0" prefWidth="163.0" style="-fx-background-color: white;" GridPane.rowIndex="1" />
-            <Label text="Team3" />
+            <Label onMouseClicked="#team3detail" text="Team3" />
             <CheckBox fx:id="team3checkbox2" mnemonicParsing="false" prefHeight="18.0" prefWidth="130.0" style="-fx-background-color: white;" GridPane.rowIndex="2" />
             <CheckBox fx:id="team3checkbox3" mnemonicParsing="false" prefHeight="18.0" prefWidth="123.0" style="-fx-background-color: white;" GridPane.rowIndex="3" />
             <CheckBox fx:id="team3checkbox4" mnemonicParsing="false" prefHeight="18.0" prefWidth="123.0" style="-fx-background-color: white;" GridPane.rowIndex="4" />
@@ -96,7 +96,7 @@
         </rowConstraints>
          <children>
             <CheckBox fx:id="team4checkbox1" mnemonicParsing="false" prefHeight="18.0" prefWidth="132.0" style="-fx-background-color: white;" GridPane.rowIndex="1" />
-            <Label text="Team4" />
+            <Label onMouseClicked="#team4detail" text="Team4" />
             <CheckBox fx:id="team4checkbox2" mnemonicParsing="false" prefHeight="18.0" prefWidth="137.0" style="-fx-background-color: white;" GridPane.rowIndex="2" />
             <CheckBox fx:id="team4checkbox3" mnemonicParsing="false" prefHeight="18.0" prefWidth="134.0" style="-fx-background-color: white;" GridPane.rowIndex="3" />
             <CheckBox fx:id="team4checkbox4" mnemonicParsing="false" prefHeight="18.0" prefWidth="170.0" style="-fx-background-color: white;" GridPane.rowIndex="4" />
@@ -116,13 +116,13 @@
          </rowConstraints>
          <children>
             <CheckBox fx:id="team5checkbox1" mnemonicParsing="false" prefHeight="18.0" prefWidth="146.0" style="-fx-background-color: white;" GridPane.rowIndex="1" />
-            <Label text="Team5" />
+            <Label onMouseClicked="#team5detail" text="Team5" />
             <CheckBox fx:id="team5checkbox2" mnemonicParsing="false" prefHeight="18.0" prefWidth="145.0" style="-fx-background-color: white;" GridPane.rowIndex="2" />
             <CheckBox fx:id="team5checkbox3" mnemonicParsing="false" prefHeight="18.0" prefWidth="150.0" style="-fx-background-color: white;" GridPane.rowIndex="3" />
             <CheckBox fx:id="team5checkbox4" mnemonicParsing="false" prefHeight="18.0" prefWidth="152.0" style="-fx-background-color: white;" GridPane.rowIndex="4" />
          </children>
       </GridPane>
-      <BarChart fx:id="bc2" layoutX="333.0" layoutY="357.0" prefHeight="230.0" prefWidth="378.0" title="Preference persentage(%)">
+      <BarChart fx:id="bc2" layoutX="335.0" layoutY="422.0" prefHeight="230.0" prefWidth="378.0" title="Preference persentage(%)">
         <xAxis>
           <CategoryAxis side="BOTTOM" fx:id="xaxis2" />
         </xAxis>
@@ -130,7 +130,7 @@
           <NumberAxis fx:id="yaxis2" side="LEFT" upperBound="6.0" />
         </yAxis>
       </BarChart>
-      <BarChart fx:id="bc3" layoutX="701.0" layoutY="357.0" prefHeight="230.0" prefWidth="306.0" title="Average Competency Level">
+      <BarChart fx:id="bc3" layoutX="713.0" layoutY="422.0" prefHeight="230.0" prefWidth="306.0" title="Average Competency Level">
         <xAxis>
           <CategoryAxis side="BOTTOM" fx:id="xaxis3" />
         </xAxis>
@@ -138,7 +138,7 @@
           <NumberAxis fx:id="yaxis3" side="LEFT" upperBound="6.0" />
         </yAxis>
       </BarChart>
-      <BarChart fx:id="bc1" layoutX="8.0" layoutY="357.0" prefHeight="230.0" prefWidth="334.0" title="Skill Gap">
+      <BarChart fx:id="bc1" layoutX="2.0" layoutY="422.0" prefHeight="230.0" prefWidth="334.0" title="Skill Gap">
         <xAxis>
           <CategoryAxis side="BOTTOM" fx:id="xaxis1" />
         </xAxis>
@@ -163,22 +163,21 @@
       <Label fx:id="team3ProID" layoutX="481.0" layoutY="35.0" text=" " />
       <Label fx:id="team4ProID" layoutX="699.0" layoutY="31.0" text=" " />
       <Label fx:id="team5ProID" layoutX="917.0" layoutY="35.0" text=" " />
-      <Button fx:id="Caculation" layoutX="474.0" layoutY="616.0" mnemonicParsing="false" onAction="#caculationBotton" text="Caculation" />
+      <Button fx:id="Caculation" layoutX="471.0" layoutY="664.0" mnemonicParsing="false" onAction="#caculationBotton" text="Caculation" />
       <ChoiceBox fx:id="Studentbox" layoutX="175.0" layoutY="279.0" prefHeight="23.0" prefWidth="334.0" />
       <Button fx:id="delete" layoutX="235.0" layoutY="314.0" mnemonicParsing="false" onAction="#deleteBotton" text="Delete" />
-      <TableView fx:id="tableTeam" layoutX="545.0" layoutY="219.0" prefHeight="134.0" prefWidth="572.0">
+      <TableView fx:id="tableTeam" layoutX="545.0" layoutY="219.0" prefHeight="191.0" prefWidth="572.0">
         <columns>
           <TableColumn fx:id="studentid" prefWidth="53.5999755859375" text="ID" />
           <TableColumn fx:id="skillset" prefWidth="89.60003662109375" text="SkillSet" />
-            <TableColumn prefWidth="144.00006103515625" text="Personality">
+            <TableColumn prefWidth="156.0" text="Personality">
                <columns>
                   <TableColumn fx:id="type" prefWidth="75.0" text="Type" />
-                  <TableColumn fx:id="confic" prefWidth="75.0" text="Confilc" />
+                  <TableColumn fx:id="confic" prefWidth="75.20001220703125" text="Confilc" />
                </columns>
             </TableColumn>
-            <TableColumn fx:id="preference" prefWidth="98.39996337890625" text="Preference" />
-            <TableColumn fx:id="competencylevel" prefWidth="88.0" text="Competency &#10;Level" />
-            <TableColumn fx:id="skillgap" prefWidth="91.199951171875" text="Skill Gap" />
+            <TableColumn fx:id="preference" prefWidth="180.800048828125" text="Preference" />
+            <TableColumn fx:id="competencylevel" prefWidth="91.9998779296875" text="Competency &#10;Level" />
         </columns>
       </TableView>
    </children>

@@ -7,10 +7,26 @@ public class Student implements Serializable {
 	private HashMap<String, Integer> skillMap = new HashMap<String, Integer>();
 	private HashMap<String, Integer> preferenceMap = new HashMap<String, Integer>();
 	private static final long serialVersionUID = -2554739865448665974L;
-	private String id;	
+	private String id;
 	private String skillset;
 	private char persionalityType;
 	private String conflict;
+	private double competencyLevel;
+
+
+
+
+	public double getCompetencyLevel() {
+		double sum = (double)(this.skillMap.get("P") + this.skillMap.get("W") + this.skillMap.get("A") + this.skillMap.get("N"))/4;
+
+		setCompetencyLevel(sum);
+
+		return competencyLevel;
+	}
+
+	public void setCompetencyLevel(double competencyLevel) {
+		this.competencyLevel = competencyLevel;
+	}
 
 	// E capture student preference
 	private String preferences;
@@ -36,8 +52,6 @@ public class Student implements Serializable {
 	public String getId() {
 		return id;
 	}
-	
-
 
 	public void setId(String id) {
 		this.id = id;
@@ -100,13 +114,15 @@ public class Student implements Serializable {
 		return this.id + " " + this.skillset + " " + this.persionalityType + " " + this.conflict;
 
 	}
-	
+
 	@Override
 	public String toString() {
 
-		return this.id + " " + this.skillset + " " + this.persionalityType + " " + this.conflict+" "+this.preferences;
+		return this.id + " " + this.skillset + " " + this.persionalityType + " " + this.conflict + " "
+				+ this.preferences;
 
 	}
+
 	public HashMap<String, Integer> getPreferenceMap() {
 		return preferenceMap;
 	}
@@ -114,7 +130,6 @@ public class Student implements Serializable {
 	public void setPreferenceMap(HashMap<String, Integer> preferenceMap) {
 		this.preferenceMap = preferenceMap;
 	}
-
 
 	public String toString3() {
 		return this.id + " " + this.skillset;

@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Set;
 
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -23,6 +25,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import model.DataHandler;
@@ -41,7 +45,7 @@ public class Controller {
 //	HashMap<String, CheckBox> swapCheckBox = new HashMap<String, CheckBox>();
 	List<CheckBox> swapCheckBox = new ArrayList<CheckBox>();
 	List<String> swapCheckBox1 = new ArrayList<String>();
-	HashMap<String, Map<String,Student>> swapMap = new HashMap<String, Map<String,Student>>();
+	HashMap<String, Map<String, Student>> swapMap = new HashMap<String, Map<String, Student>>();
 	HashMap<String, CheckBox> checkBoxMap = new HashMap<String, CheckBox>();
 	HashMap<String, TextField> textMap = new HashMap<String, TextField>();
 	Map<String, Student> sMap1 = new HashMap<String, Student>();
@@ -51,6 +55,15 @@ public class Controller {
 	Map<String, Student> sMap5 = new HashMap<String, Student>();
 	Map<String, Student> allStudents = new HashMap<String, Student>();
 
+	ObservableList<Student> list1 =FXCollections.observableArrayList();
+	ObservableList<Student> list2 =FXCollections.observableArrayList();
+	ObservableList<Student> list3 =FXCollections.observableArrayList();
+	ObservableList<Student> list4 =FXCollections.observableArrayList();
+	ObservableList<Student> list5 =FXCollections.observableArrayList();
+	
+	
+	
+	
 	@FXML
 	private TableView<Student> tableTeam;
 
@@ -61,7 +74,7 @@ public class Controller {
 	private TableColumn<Student, String> skillset;
 
 	@FXML
-	private TableColumn<Student, String> type;
+	private TableColumn<Student, Character> type;
 
 	@FXML
 	private TableColumn<Student, String> confic;
@@ -70,7 +83,7 @@ public class Controller {
 	private TableColumn<Student, String> preference;
 
 	@FXML
-	private TableColumn<Student, String> competencylevel;
+	private TableColumn<Student, Double> competencylevel;
 
 	@FXML
 	private TableColumn<Student, String> skillgap;
@@ -83,19 +96,7 @@ public class Controller {
 
 	@FXML
 	private CheckBox team1checkbox1;
-
-//	@FXML
-//	private TextField team1Student1;
-//
-//	@FXML
-//	private TextField team1Student2;
-//
-//	@FXML
-//	private TextField team1Student3;
-//
-//	@FXML
-//	private TextField team1Student4;
-
+	
 	@FXML
 	private CheckBox team1checkbox2;
 
@@ -114,18 +115,6 @@ public class Controller {
 	@FXML
 	private CheckBox team2checkbox1;
 
-//	@FXML
-//	private TextField team2Student1;
-//
-//	@FXML
-//	private TextField team2Student2;
-//
-//	@FXML
-//	private TextField team2Student3;
-//
-//	@FXML
-//	private TextField team2Student4;
-
 	@FXML
 	private CheckBox team2checkbox2;
 
@@ -143,18 +132,6 @@ public class Controller {
 
 	@FXML
 	private CheckBox team3checkbox1;
-
-//	@FXML
-//	private TextField team3Student1;
-//
-//	@FXML
-//	private TextField team3Student2;
-//
-//	@FXML
-//	private TextField team3Student3;
-//
-//	@FXML
-//	private TextField team3Student4;
 
 	@FXML
 	private CheckBox team3checkbox2;
@@ -183,18 +160,6 @@ public class Controller {
 	@FXML
 	private CheckBox team4checkbox4;
 
-//	@FXML
-//	private TextField team4Student1;
-//
-//	@FXML
-//	private TextField team4Student2;
-//
-//	@FXML
-//	private TextField team4Student3;
-//
-//	@FXML
-//	private TextField team4Student4;
-
 	@FXML
 	private Label team4ProID;
 
@@ -203,18 +168,6 @@ public class Controller {
 
 	@FXML
 	private CheckBox team5checkbox1;
-
-//	@FXML
-//	private TextField team5Student1;
-//
-//	@FXML
-//	private TextField team5Student2;
-//
-//	@FXML
-//	private TextField team5Student3;
-//
-//	@FXML
-//	private TextField team5Student4;
 
 	@FXML
 	private CheckBox team5checkbox2;
@@ -350,21 +303,19 @@ public class Controller {
 		team4ProID.setText(dh.projectList.get(3).getId() + " " + dh.projectList.get(3).getRanking());
 		team5ProID.setText(dh.projectList.get(4).getId() + " " + dh.projectList.get(4).getRanking());
 
-
 //		 add checkbox at eventlistenter.
 		for (String s : checkBoxMap.keySet()) {
 			checkBoxMap.get(s).selectedProperty()
 					.addListener((ObservableValue<? extends Boolean> ov, Boolean old_val, Boolean new_val) -> {
 						if (old_val == false && new_val == true) {
 							swapCheckBox.add(checkBoxMap.get(s));
-							swapCheckBox1.add(s);				
+							swapCheckBox1.add(s);
 							System.out.println(checkBoxMap.get(s).getText());
 							System.out.println(swapCheckBox.toString());
 							System.out.println(swapCheckBox1.toString());
-							
 
 						} else if (old_val == true && new_val == false) {
-							
+
 							swapCheckBox.remove(checkBoxMap.get(s));
 							swapCheckBox1.remove(s);
 							System.out.println(checkBoxMap.get(s).getText());
@@ -376,6 +327,21 @@ public class Controller {
 
 		}
 
+		// teableview setting
+		tableTeam.setEditable(true);
+		studentid.setCellValueFactory(new PropertyValueFactory<Student,String>("id"));
+		skillset.setCellValueFactory(new PropertyValueFactory<Student,String>("skillset"));
+		type.setCellValueFactory(new PropertyValueFactory<Student,Character>("persionalityType"));
+		confic.setCellValueFactory(new PropertyValueFactory<Student,String>("conflict"));
+		preference.setCellValueFactory(new PropertyValueFactory<Student,String>("preferences"));
+		competencylevel.setCellValueFactory(new PropertyValueFactory<Student,Double>("competencyLevel"));
+//		skillgap.setCellValueFactory(new PropertyValueFactory<Student,String>("skillgap"));
+		
+		
+	
+		
+		
+
 	}
 
 	@FXML
@@ -383,7 +349,7 @@ public class Controller {
 		if (swapCheckBox.size() == 1) {
 			for (String s : checkBoxMap.keySet()) {
 				if (checkBoxMap.get(s).isSelected() && checkBoxMap.get(s).getText().isBlank()) {
-					checkBoxMap.get(s).setText(Studentbox.getValue().getId().toUpperCase());				
+					checkBoxMap.get(s).setText(Studentbox.getValue().getId().toUpperCase());
 					checkBoxMap.get(s).setSelected(false);
 					if (s.substring(0, 2).equals("t1")) {
 						sMap1.put(checkBoxMap.get(s).getText(), Studentbox.getValue());
@@ -408,11 +374,11 @@ public class Controller {
 					}
 
 					Studentbox.getItems().remove(Studentbox.getValue());
-					}else if(checkBoxMap.get(s).isSelected() && !checkBoxMap.get(s).getText().isBlank()) {
-						Alert alert = new Alert(AlertType.ERROR);
-						alert.setContentText(ErrorMessages.STUDENT_ALREADY_ADDED);
-						alert.show();
-					}
+				} else if (checkBoxMap.get(s).isSelected() && !checkBoxMap.get(s).getText().isBlank()) {
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setContentText(ErrorMessages.STUDENT_ALREADY_ADDED);
+					alert.show();
+				}
 			}
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -420,7 +386,6 @@ public class Controller {
 			alert.show();
 
 		}
-
 
 		t1 = new Team(dh.projectList.get(0), sMap1);
 		t2 = new Team(dh.projectList.get(1), sMap2);
@@ -455,16 +420,16 @@ public class Controller {
 	}
 
 	public void swapMap(String a, String b) {
-		//get the checkBoxMap key.
-		
+		// get the checkBoxMap key.
+
 		System.out.println("==========print the swapMap============");
 		System.out.println(swapCheckBox.get(1).getText());
 		swapMap.get(a).remove(swapCheckBox.get(1).getText());
 		System.out.println(swapMap.get(a));
-		
+
 		swapMap.get(a).put(swapCheckBox.get(0).getText(), allStudents.get(swapCheckBox.get(0).getText()));
 		System.out.println(swapMap.get(a));
-		
+
 		System.out.println(swapCheckBox.get(0).getText());
 		swapMap.get(b).remove(swapCheckBox.get(0).getText());
 		System.out.println(swapMap.get(b));
@@ -472,40 +437,36 @@ public class Controller {
 		swapMap.get(b);
 		System.out.println("==========print the swapMap============");
 
-		
-			
+	}
+//get the key from a map.
+	public static Object getKey(Map map, Object value) {
+		Object kk = null;
+		List<Object> keyList = new ArrayList<>();
+		for (Object key : map.keySet()) {
+			if (map.get(key).equals(value)) {
+				keyList.add(key);
+			}
+		}
+		for (Object k : keyList) {
+			kk = k;
+		}
+
+		return kk.toString();
 	}
 
 
-
 	
 	
 	
 	
-
 	
-	public static Object getKey(Map map, Object value){
-		Object kk =null;
-	    List<Object> keyList = new ArrayList<>();
-	    for(Object key: map.keySet()){
-	        if(map.get(key).equals(value)){
-	            keyList.add(key);
-	        }
-	    }
-	    for(Object k : keyList) {
-	    	kk =k;
-	    }
-	    
-	    return kk.toString();
-	}
-
+	
 	@FXML
 	void caculationBotton(ActionEvent event) {
 
 		XYChart.Series dataSeries1 = new XYChart.Series();
 		XYChart.Series dataSeries2 = new XYChart.Series();
-		
-		
+
 		dataSeries1.getData().add(new XYChart.Data(dh.projectList.get(0).getId(), t1.getSkillgap()));
 		dataSeries1.getData().add(new XYChart.Data(dh.projectList.get(1).getId(), t2.getSkillgap()));
 		dataSeries1.getData().add(new XYChart.Data(dh.projectList.get(2).getId(), t3.getSkillgap()));
@@ -513,9 +474,7 @@ public class Controller {
 		dataSeries1.getData().add(new XYChart.Data(dh.projectList.get(4).getId(), t5.getSkillgap()));
 		bc1.getData().clear();
 		bc1.getData().add(dataSeries1);
-		
-		
-		
+
 		dataSeries2.getData().add(new XYChart.Data(dh.projectList.get(0).getId(), t1.getPerCenTageStu()));
 		dataSeries2.getData().add(new XYChart.Data(dh.projectList.get(1).getId(), t2.getPerCenTageStu()));
 		dataSeries2.getData().add(new XYChart.Data(dh.projectList.get(2).getId(), t3.getPerCenTageStu()));
@@ -523,39 +482,32 @@ public class Controller {
 		dataSeries2.getData().add(new XYChart.Data(dh.projectList.get(4).getId(), t5.getPerCenTageStu()));
 		bc2.getData().clear();
 		bc2.getData().add(dataSeries2);
-		
-		
-		
+
 		XYChart.Series dataSeries3 = new XYChart.Series();
-	
-		
-		
+
 		dataSeries3.getData().add(new XYChart.Data(dh.projectList.get(0).getId(), t1.getSkillShortfall()));
 		dataSeries3.getData().add(new XYChart.Data(dh.projectList.get(1).getId(), t2.getSkillShortfall()));
 		dataSeries3.getData().add(new XYChart.Data(dh.projectList.get(2).getId(), t3.getSkillShortfall()));
 		dataSeries3.getData().add(new XYChart.Data(dh.projectList.get(3).getId(), t4.getSkillShortfall()));
 		dataSeries3.getData().add(new XYChart.Data(dh.projectList.get(4).getId(), t5.getSkillShortfall()));
-	
+
 		bc3.getData().clear();
 		bc3.getData().add(dataSeries3);
-		
-		
 
 	}
 
 	@FXML
 	void deleteBotton(ActionEvent event) {
-		
 
 		for (String s : checkBoxMap.keySet()) {
 			if (checkBoxMap.get(s).isSelected()) {
 				for (Student student : dh.studentSkillSetList) {
-					if(student.getId().equals(checkBoxMap.get(s).getText()))
-					Studentbox.getItems().add(student);
+					if (student.getId().equals(checkBoxMap.get(s).getText()))
+						Studentbox.getItems().add(student);
 				}
-				
+
 				if (s.substring(0, 2).equals("t1")) {
-					
+
 					sMap1.remove(checkBoxMap.get(s).getText());
 					System.out.println(sMap1);
 				} else if (s.substring(0, 2).equals("t2")) {
@@ -576,11 +528,68 @@ public class Controller {
 			}
 
 		}
-		
-		
-		
-	
 
 	}
+	
+	
+	
+    @FXML
+    void team1detail(MouseEvent event) {
+    	tableTeam.getItems().clear();
+		for(String stu1: sMap1.keySet()) {
+			list1.add(sMap1.get(stu1));			
+		}
+		tableTeam.setItems(list1);
+		System.out.println(sMap1);
+		
+    }
+
+    @FXML
+    void team2detail(MouseEvent event) {
+    	tableTeam.getItems().clear();
+    	for(String stu1: sMap2.keySet()) {
+			list2.add(sMap2.get(stu1));			
+		}
+		tableTeam.setItems(list2);
+		System.out.println(sMap2);
+    }
+
+    @FXML
+    void team3detail(MouseEvent event) {
+    	tableTeam.getItems().clear();
+    	for(String stu1: sMap3.keySet()) {
+			list3.add(sMap3.get(stu1));			
+		}
+		tableTeam.setItems(list3);
+		System.out.println(sMap3);
+
+    }
+
+    @FXML
+    void team4detail(MouseEvent event) {
+    	tableTeam.getItems().clear();
+    	for(String stu1: sMap4.keySet()) {
+			list4.add(sMap4.get(stu1));			
+		}
+		tableTeam.setItems(list4);
+		System.out.println(sMap4);
+
+    }
+
+    @FXML
+    void team5detail(MouseEvent event) {
+    	tableTeam.getItems().clear();
+    	for(String stu1: sMap5.keySet()) {
+			list5.add(sMap5.get(stu1));			
+		}
+		tableTeam.setItems(list5);
+		
+		for(String s : sMap5.keySet()) {
+			System.out.println(sMap5.get(s));
+			System.out.println(sMap5.get(s).getCompetencyLevel());
+		}
+		
+
+    }
 
 }
