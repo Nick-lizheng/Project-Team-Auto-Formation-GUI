@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import command.CommandManager;
+import command.action.AddAction;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -349,34 +351,41 @@ public class Controller {
 	@FXML
 	void addButton(ActionEvent event) {
 		if (swapCheckBox.size() == 1) {
-			for (String s : checkBoxMap.keySet()) {
-				if (checkBoxMap.get(s).isSelected() && checkBoxMap.get(s).getText().isBlank()) {
-					checkBoxMap.get(s).setText(Studentbox.getValue().getId().toUpperCase());
-					checkBoxMap.get(s).setSelected(false);
-					if (s.substring(0, 2).equals("t1")) {
-						sMap1.put(checkBoxMap.get(s).getText(), Studentbox.getValue());
-						System.out.println(s.substring(0, 2));
-						System.out.println(sMap1);
-					} else if (s.substring(0, 2).equals("t2")) {
-						sMap2.put(checkBoxMap.get(s).getText(), Studentbox.getValue());
-						System.out.println(s.substring(0, 2));
-						System.out.println(sMap2);
-					} else if (s.substring(0, 2).equals("t3")) {
-						sMap3.put(checkBoxMap.get(s).getText(), Studentbox.getValue());
-						System.out.println(s.substring(0, 2));
-						System.out.println(sMap3);
-					} else if (s.substring(0, 2).equals("t4")) {
-						sMap4.put(checkBoxMap.get(s).getText(), Studentbox.getValue());
-						System.out.println(s.substring(0, 2));
-						System.out.println(sMap4);
-					} else {
-						sMap5.put(checkBoxMap.get(s).getText(), Studentbox.getValue());
-						System.out.println(s.substring(0, 2));
-						System.out.println(sMap5);
-					}
 
-					Studentbox.getItems().remove(Studentbox.getValue());
-				} else if (checkBoxMap.get(s).isSelected() && !checkBoxMap.get(s).getText().isBlank()) {
+
+
+			for (String s : checkBoxMap.keySet()) {
+				if (checkBoxMap.get(s).isSelected() && checkBoxMap.get(s).getText().isEmpty()) {
+
+					CommandManager manager = CommandManager.getInstance();
+					manager.execute(new AddAction("Add "+s+","+Studentbox.getValue(),s,checkBoxMap.get(s),Studentbox,Studentbox.getValue(),sMap1,sMap2,sMap3,sMap4,sMap5));
+
+//					checkBoxMap.get(s).setText(Studentbox.getValue().getId().toUpperCase());
+//					checkBoxMap.get(s).setSelected(false);
+//					if (s.substring(0, 2).equals("t1")) {
+//						sMap1.put(checkBoxMap.get(s).getText(), Studentbox.getValue());
+//						System.out.println(s.substring(0, 2));
+//						System.out.println(sMap1);
+//					} else if (s.substring(0, 2).equals("t2")) {
+//						sMap2.put(checkBoxMap.get(s).getText(), Studentbox.getValue());
+//						System.out.println(s.substring(0, 2));
+//						System.out.println(sMap2);
+//					} else if (s.substring(0, 2).equals("t3")) {
+//						sMap3.put(checkBoxMap.get(s).getText(), Studentbox.getValue());
+//						System.out.println(s.substring(0, 2));
+//						System.out.println(sMap3);
+//					} else if (s.substring(0, 2).equals("t4")) {
+//						sMap4.put(checkBoxMap.get(s).getText(), Studentbox.getValue());
+//						System.out.println(s.substring(0, 2));
+//						System.out.println(sMap4);
+//					} else {
+//						sMap5.put(checkBoxMap.get(s).getText(), Studentbox.getValue());
+//						System.out.println(s.substring(0, 2));
+//						System.out.println(sMap5);
+//					}
+//
+//					Studentbox.getItems().remove(Studentbox.getValue());
+				} else if (checkBoxMap.get(s).isSelected() && !checkBoxMap.get(s).getText().isEmpty()) {
 					Alert alert = new Alert(AlertType.ERROR);
 					alert.setContentText(ErrorMessages.STUDENT_ALREADY_ADDED);
 					alert.show();
@@ -594,4 +603,11 @@ public class Controller {
 
     }
 
+	public void autoSwapAction(ActionEvent actionEvent) {
+	}
+
+	public void undoAction(ActionEvent actionEvent) {
+		CommandManager manager = CommandManager.getInstance();
+		manager.undo();
+	}
 }
