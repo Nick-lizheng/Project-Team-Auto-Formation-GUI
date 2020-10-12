@@ -227,6 +227,12 @@ public class Controller {
 
 	@FXML
 	private Button Caculation;
+	
+    @FXML
+    private Label sd1;
+
+    @FXML
+    private Label sd3;
 
 	@FXML
 	private ChoiceBox<Student> Studentbox;
@@ -299,7 +305,7 @@ public class Controller {
 		xaxis2.setLabel("The percentage of getting 1st and 2nd preference");
 		yaxis2.setLabel("Persentage");
 		xaxis3.setLabel("Average Competency Level");
-		yaxis3.setLabel("Persentage");
+		yaxis3.setLabel("Number of Average Competency Level");
 
 		// setting the label with team information.
 		team1ProID.setText(dh.projectList.get(0).getId() + " " + dh.projectList.get(0).getRanking());
@@ -495,14 +501,19 @@ public class Controller {
 
 		XYChart.Series dataSeries3 = new XYChart.Series();
 
-		dataSeries3.getData().add(new XYChart.Data(dh.projectList.get(0).getId(), t1.getSkillShortfall()));
-		dataSeries3.getData().add(new XYChart.Data(dh.projectList.get(1).getId(), t2.getSkillShortfall()));
-		dataSeries3.getData().add(new XYChart.Data(dh.projectList.get(2).getId(), t3.getSkillShortfall()));
-		dataSeries3.getData().add(new XYChart.Data(dh.projectList.get(3).getId(), t4.getSkillShortfall()));
-		dataSeries3.getData().add(new XYChart.Data(dh.projectList.get(4).getId(), t5.getSkillShortfall()));
+		dataSeries3.getData().add(new XYChart.Data(dh.projectList.get(0).getId(), t1.getAverageCompetencyLevel()));
+		dataSeries3.getData().add(new XYChart.Data(dh.projectList.get(1).getId(), t2.getAverageCompetencyLevel()));
+		dataSeries3.getData().add(new XYChart.Data(dh.projectList.get(2).getId(), t3.getAverageCompetencyLevel()));
+		dataSeries3.getData().add(new XYChart.Data(dh.projectList.get(3).getId(), t4.getAverageCompetencyLevel()));
+		dataSeries3.getData().add(new XYChart.Data(dh.projectList.get(4).getId(), t5.getAverageCompetencyLevel()));
 
 		bc3.getData().clear();
 		bc3.getData().add(dataSeries3);
+		
+		double []result = new double[4];
+		
+		
+		sd3.setText("SD" + result);
 
 	}
 
@@ -598,7 +609,7 @@ public class Controller {
 			list5.add(sMap5.get(stu1));			
 		}
 		tableTeam.setItems(list5);
-		
+		//below is for backend test
 		for(String s : sMap5.keySet()) {
 			System.out.println(sMap5.get(s));
 			System.out.println(sMap5.get(s).getCompetencyLevel());

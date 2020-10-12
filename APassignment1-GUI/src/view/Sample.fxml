@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1196.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="746.0" prefWidth="1196.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
    <children>
       <Button fx:id="add" layoutX="169.0" layoutY="314.0" mnemonicParsing="false" onAction="#addButton" text="Add" />
       <GridPane fx:id="team1" layoutX="36.0" layoutY="51.0" style="-fx-background-color: orange; -fx-border-color: black;">
@@ -135,7 +135,7 @@
           <CategoryAxis side="BOTTOM" fx:id="xaxis3" />
         </xAxis>
         <yAxis>
-          <NumberAxis fx:id="yaxis3" side="LEFT" upperBound="6.0" />
+          <NumberAxis fx:id="yaxis3" side="LEFT" upperBound="2.0" />
         </yAxis>
       </BarChart>
       <BarChart fx:id="bc1" layoutX="2.0" layoutY="422.0" prefHeight="230.0" prefWidth="334.0" title="Skill Gap">
@@ -163,7 +163,7 @@
       <Label fx:id="team3ProID" layoutX="481.0" layoutY="35.0" text=" " />
       <Label fx:id="team4ProID" layoutX="699.0" layoutY="31.0" text=" " />
       <Label fx:id="team5ProID" layoutX="917.0" layoutY="35.0" text=" " />
-      <Button fx:id="Caculation" layoutX="471.0" layoutY="664.0" mnemonicParsing="false" onAction="#caculationBotton" text="Caculation" />
+      <Button fx:id="Caculation" layoutX="471.0" layoutY="708.0" mnemonicParsing="false" onAction="#caculationBotton" text="Caculation" />
       <ChoiceBox fx:id="Studentbox" layoutX="175.0" layoutY="279.0" prefHeight="23.0" prefWidth="334.0" />
       <Button fx:id="delete" layoutX="235.0" layoutY="314.0" mnemonicParsing="false" onAction="#deleteBotton" text="Delete" />
       <TableView fx:id="tableTeam" layoutX="545.0" layoutY="219.0" prefHeight="191.0" prefWidth="572.0">
@@ -182,5 +182,7 @@
       </TableView>
       <Button fx:id="AutoSwap" layoutX="388.0" layoutY="314.0" mnemonicParsing="false" onAction="#autoSwapAction" text="AutoSwap" />
       <Button fx:id="undo" layoutX="166.0" layoutY="348.0" mnemonicParsing="false" onAction="#undoAction" text="undo" />
+      <Label fx:id="sd1" layoutX="124.0" layoutY="675.0" text="Standard deviation" />
+      <Label fx:id="sd3" layoutX="851.0" layoutY="675.0" text="Standard deviation" />
    </children>
 </AnchorPane>

@@ -19,6 +19,7 @@ public class Team implements Serializable {
 	private double perCenTageStu;
 	private double skillShortfall;
 	private double skillgap;
+	private double AverageCompetencyLevel;
 
 	public Team(Project project, Map<String, Student> sMap) {
 		super();
@@ -34,6 +35,21 @@ public class Team implements Serializable {
 	}
 	
 	
+
+	public double getAverageCompetencyLevel() {
+		double ave = (getAveStuSkillForP()+getAveStuSkillForW()+getAveStuSkillForA()+getAveStuSkillForN())/4;
+		setAverageCompetencyLevel(ave);
+		
+		return AverageCompetencyLevel;
+	}
+
+
+
+	public void setAverageCompetencyLevel(double averageCompetencyLevel) {
+		AverageCompetencyLevel = averageCompetencyLevel;
+	}
+
+
 
 	public double getSkillgap() {
 		double P,W,A,N;				
