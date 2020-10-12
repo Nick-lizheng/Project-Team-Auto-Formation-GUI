@@ -623,6 +623,124 @@ public class Controller {
     }
 
 	public void autoSwapAction(ActionEvent actionEvent) {
+
+
+		ArrayList<Student> studentSkillSetList = dh.studentSkillSetList;
+
+		Map<String, Student> sMap1 = new HashMap<String, Student>();
+		sMap1.put(studentSkillSetList.get(0).getId().toUpperCase(), studentSkillSetList.get(0));
+		sMap1.put(studentSkillSetList.get(1).getId().toUpperCase(), studentSkillSetList.get(1));
+		sMap1.put(studentSkillSetList.get(2).getId().toUpperCase(), studentSkillSetList.get(2));
+		sMap1.put(studentSkillSetList.get(3).getId().toUpperCase(), studentSkillSetList.get(3));
+
+		Map<String, Student> sMap2 = new HashMap<String, Student>();
+		sMap2.put(studentSkillSetList.get(4).getId().toUpperCase(), studentSkillSetList.get(4));
+		sMap2.put(studentSkillSetList.get(5).getId().toUpperCase(), studentSkillSetList.get(5));
+		sMap2.put(studentSkillSetList.get(6).getId().toUpperCase(), studentSkillSetList.get(6));
+		sMap2.put(studentSkillSetList.get(7).getId().toUpperCase(), studentSkillSetList.get(7));
+
+		Map<String, Student> sMap3 = new HashMap<String, Student>();
+		sMap3.put(studentSkillSetList.get(8).getId().toUpperCase(), studentSkillSetList.get(8));
+		sMap3.put(studentSkillSetList.get(9).getId().toUpperCase(), studentSkillSetList.get(9));
+		sMap3.put(studentSkillSetList.get(10).getId().toUpperCase(), studentSkillSetList.get(10));
+		sMap3.put(studentSkillSetList.get(11).getId().toUpperCase(), studentSkillSetList.get(11));
+
+		Map<String, Student> sMap4 = new HashMap<String, Student>();
+		sMap4.put(studentSkillSetList.get(12).getId().toUpperCase(), studentSkillSetList.get(12));
+		sMap4.put(studentSkillSetList.get(13).getId().toUpperCase(), studentSkillSetList.get(13));
+		sMap4.put(studentSkillSetList.get(14).getId().toUpperCase(), studentSkillSetList.get(14));
+		sMap4.put(studentSkillSetList.get(15).getId().toUpperCase(), studentSkillSetList.get(15));
+
+		Map<String, Student> sMap5 = new HashMap<String, Student>();
+		sMap5.put(studentSkillSetList.get(16).getId().toUpperCase(), studentSkillSetList.get(16));
+		sMap5.put(studentSkillSetList.get(17).getId().toUpperCase(), studentSkillSetList.get(17));
+		sMap5.put(studentSkillSetList.get(18).getId().toUpperCase(), studentSkillSetList.get(18));
+		sMap5.put(studentSkillSetList.get(19).getId().toUpperCase(), studentSkillSetList.get(19));
+
+		Team t1 = new Team(dh.projectList.get(0), sMap1);
+		Team t2 = new Team(dh.projectList.get(1), sMap2);
+		Team t3 = new Team(dh.projectList.get(2), sMap3);
+		Team t4 = new Team(dh.projectList.get(3), sMap4);
+		Team t5 = new Team(dh.projectList.get(4), sMap5);
+
+		ArrayList<Team> teams=new ArrayList<>();
+		teams.add(t1);
+		teams.add(t2);
+		teams.add(t3);
+		teams.add(t4);
+		teams.add(t5);
+
+		double gap=Double.MAX_VALUE;
+		ArrayList<Team> calcTeams=swapTeamMaxMaxAndTeamMinMin(teams,gap);
+
+	}
+
+	private ArrayList<Team> swapTeamMaxMaxAndTeamMinMin(ArrayList<Team> teams,double gap){
+
+		double tMaxAcl=Double.MIN_VALUE;
+		double tMinAcl= Double.MAX_VALUE;
+
+		Team maxAclTeam=null;
+		Team minAclTeam=null;
+
+		//get max ACL team and min ACL team
+		for (int i = 0; i < teams.size(); i++) {
+			Team tmpTeam=teams.get(i);
+			double acl=tmpTeam.getAverageCompetencyLevel();
+			if(acl>tMaxAcl){
+				tMaxAcl=acl;
+				maxAclTeam=tmpTeam;
+			}
+			if(acl<tMinAcl){
+				tMinAcl=acl;
+				minAclTeam=tmpTeam;
+			}
+		}
+
+		System.out.println("MaxACLTeam:"+maxAclTeam.getProject().getId()+" "+tMaxAcl);
+		System.out.println("MinACLTeam:"+minAclTeam.getProject().getId()+" "+tMinAcl);
+
+		double tmpGap=Math.abs(tMaxAcl-tMinAcl);
+		if(tmpGap<gap){
+
+			//swap max acl team max
+			Map<String, Student> maxSMap=maxAclTeam.getStudentMap();
+			Student maxStu=null;
+			double maxCl= Double.MIN_VALUE;
+			for(String str: maxSMap.keySet()) {
+				Student tmpStu=maxSMap.get(str);
+				double tmpCl=tmpStu.getCompetencyLevel();
+				if(tmpCl>maxCl){
+					maxCl=tmpCl;
+					maxStu=tmpStu;
+				}
+			}
+
+			Map<String, Student> minSMap=minAclTeam.getStudentMap();
+			Student minStu=null;
+			double minCl= Double.MAX_VALUE;
+			for(String str: minSMap.keySet()) {
+				Student tmpStu=minSMap.get(str);
+				double tmpCl=tmpStu.getCompetencyLevel();
+				if(tmpCl<minCl){
+					minCl=tmpCl;
+					minStu=tmpStu;
+				}
+			}
+
+			maxSMap.remove(maxStu.getId().toUpperCase());
+			maxSMap.put(minStu.getId().toUpperCase(),minStu);
+
+			minSMap.remove(minStu.getId().toUpperCase());
+			minSMap.put(maxStu.getId().toUpperCase(),maxStu);
+
+			System.out.println("Swap:"+maxStu.getId().toUpperCase()+","+minStu.getId().toUpperCase());
+
+			return swapTeamMaxMaxAndTeamMinMin(teams,tmpGap);
+		}
+		else{
+			return teams;
+		}
 	}
 
 	public void undoAction(ActionEvent actionEvent) {
