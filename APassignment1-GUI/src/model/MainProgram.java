@@ -2,15 +2,18 @@ package model;
 
 import java.util.Scanner;
 
+import main.Main;
+
 public class MainProgram {
 
 	public static void main(String[] args) {
+	
 		DataHandler dh = new DataHandler();
 		dh.readAll();
 		
 		while (true) {
 			showMenu();
-			System.out.println("Please select option from [A] - [I]");
+			System.out.println("Please select option from [A] - [J]");
 			Scanner sc = new Scanner(System.in);
 			String option = sc.next().toUpperCase();//Switch all input to uppercase letter
 			
@@ -40,10 +43,12 @@ public class MainProgram {
 				dh.disPlayTeamFinessMetrics();
 				break;
 			case "I":
+				Main.main(args);
+			case "J":
 				System.out.println("Quit sucess!!!");
 				System.exit(0);
 			default:
-				System.err.println("Sorry, available input in option [A] - [I] , please try again");
+				System.err.println("Sorry, available input in option [A] - [J] , please try again");
 				break;
 			}
 
@@ -62,7 +67,8 @@ public class MainProgram {
 		System.out.println("F. Shortlist Projects");
 		System.out.println("G. Form Teams");
 		System.out.println("H. Display Team Fitness Metrics");
-		System.out.println("I. Exit");
+		System.out.println("I. UI Mode");
+		System.out.println("J. Exit");
 		System.out.println("***************************************");
 	}
 

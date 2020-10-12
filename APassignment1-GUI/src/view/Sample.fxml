@@ -180,7 +180,7 @@
             <TableColumn fx:id="competencylevel" prefWidth="91.9998779296875" text="Competency &#10;Level" />
         </columns>
       </TableView>
-      <Button fx:id="AutoSwap" layoutX="388.0" layoutY="314.0" mnemonicParsing="false" text="AutoSwap" onAction="#autoSwapAction"/>
-      <Button fx:id="undo" layoutX="162.0" layoutY="369.0" mnemonicParsing="false" text="undo" onAction="#undoAction"/>
+      <Button fx:id="AutoSwap" layoutX="388.0" layoutY="314.0" mnemonicParsing="false" onAction="#autoSwapAction" text="AutoSwap" />
+      <Button fx:id="undo" layoutX="166.0" layoutY="348.0" mnemonicParsing="false" onAction="#undoAction" text="undo" />
    </children>
 </AnchorPane>
