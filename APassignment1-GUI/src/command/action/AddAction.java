@@ -69,23 +69,23 @@ public class AddAction implements Action {
         selectCheckBox.setText("");
         selectCheckBox.setSelected(true);
         if (s.substring(0, 2).equals("t1")) {
-            sMap1.remove(selectCheckBox.getText(), student);
+            sMap1.remove(selectCheckBox.getText());
             System.out.println(s.substring(0, 2));
             System.out.println(sMap1);
         } else if (s.substring(0, 2).equals("t2")) {
-            sMap2.remove(selectCheckBox.getText(), student);
+            sMap2.remove(selectCheckBox.getText());
             System.out.println(s.substring(0, 2));
             System.out.println(sMap2);
         } else if (s.substring(0, 2).equals("t3")) {
-            sMap3.remove(selectCheckBox.getText(), student);
+            sMap3.remove(selectCheckBox.getText());
             System.out.println(s.substring(0, 2));
             System.out.println(sMap3);
         } else if (s.substring(0, 2).equals("t4")) {
-            sMap4.remove(selectCheckBox.getText(), student);
+            sMap4.remove(selectCheckBox.getText());
             System.out.println(s.substring(0, 2));
             System.out.println(sMap4);
         } else {
-            sMap5.remove(selectCheckBox.getText(), student);
+            sMap5.remove(selectCheckBox.getText());
             System.out.println(s.substring(0, 2));
             System.out.println(sMap5);
         }
