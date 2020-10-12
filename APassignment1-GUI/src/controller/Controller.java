@@ -735,7 +735,7 @@ public class Controller {
 			minSMap.put(maxStu.getId().toUpperCase(),maxStu);
 
 			System.out.println("Swap:"+maxStu.getId().toUpperCase()+","+minStu.getId().toUpperCase());
-
+			System.out.println("***************************************************************"+"\n");
 			return swapTeamMaxMaxAndTeamMinMin(teams,tmpGap);
 		}
 		else{
