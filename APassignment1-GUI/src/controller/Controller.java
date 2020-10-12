@@ -11,6 +11,7 @@ import java.util.Set;
 
 import command.CommandManager;
 import command.action.AddAction;
+import command.action.DeleteAction;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -352,8 +353,6 @@ public class Controller {
 	void addButton(ActionEvent event) {
 		if (swapCheckBox.size() == 1) {
 
-
-
 			for (String s : checkBoxMap.keySet()) {
 				if (checkBoxMap.get(s).isSelected() && checkBoxMap.get(s).getText().isEmpty()) {
 
@@ -510,35 +509,40 @@ public class Controller {
 	@FXML
 	void deleteBotton(ActionEvent event) {
 
-		for (String s : checkBoxMap.keySet()) {
-			if (checkBoxMap.get(s).isSelected()) {
-				for (Student student : dh.studentSkillSetList) {
-					if (student.getId().equals(checkBoxMap.get(s).getText()))
-						Studentbox.getItems().add(student);
-				}
+		CommandManager manager = CommandManager.getInstance();
+		manager.execute(new DeleteAction("Delete ",checkBoxMap,dh,Studentbox,sMap1,sMap2,sMap3,sMap4,sMap5));
 
-				if (s.substring(0, 2).equals("t1")) {
-
-					sMap1.remove(checkBoxMap.get(s).getText());
-					System.out.println(sMap1);
-				} else if (s.substring(0, 2).equals("t2")) {
-					sMap2.remove(checkBoxMap.get(s).getText());
-					System.out.println(sMap2);
-				} else if (s.substring(0, 2).equals("t3")) {
-					sMap3.remove(checkBoxMap.get(s).getText());
-					System.out.println(sMap3);
-				} else if (s.substring(0, 2).equals("t4")) {
-					sMap4.remove(checkBoxMap.get(s).getText());
-					System.out.println(sMap4);
-				} else {
-					sMap5.remove(checkBoxMap.get(s).getText());
-					System.out.println(sMap5);
-				}
-				checkBoxMap.get(s).setText("");
-				checkBoxMap.get(s).setSelected(false);
-			}
-
-		}
+//		for (String s : checkBoxMap.keySet()) {
+//			if (checkBoxMap.get(s).isSelected()) {
+//
+//
+//				for (Student student : dh.studentSkillSetList) {
+//					if (student.getId().equals(checkBoxMap.get(s).getText()))
+//						Studentbox.getItems().add(student);
+//				}
+//
+//				if (s.substring(0, 2).equals("t1")) {
+//
+//					sMap1.remove(checkBoxMap.get(s).getText());
+//					System.out.println(sMap1);
+//				} else if (s.substring(0, 2).equals("t2")) {
+//					sMap2.remove(checkBoxMap.get(s).getText());
+//					System.out.println(sMap2);
+//				} else if (s.substring(0, 2).equals("t3")) {
+//					sMap3.remove(checkBoxMap.get(s).getText());
+//					System.out.println(sMap3);
+//				} else if (s.substring(0, 2).equals("t4")) {
+//					sMap4.remove(checkBoxMap.get(s).getText());
+//					System.out.println(sMap4);
+//				} else {
+//					sMap5.remove(checkBoxMap.get(s).getText());
+//					System.out.println(sMap5);
+//				}
+//				checkBoxMap.get(s).setText("");
+//				checkBoxMap.get(s).setSelected(false);
+//			}
+//
+//		}
 
 	}
 	
