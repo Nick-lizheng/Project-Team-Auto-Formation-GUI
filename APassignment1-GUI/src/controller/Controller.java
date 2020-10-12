@@ -625,50 +625,51 @@ public class Controller {
 	public void autoSwapAction(ActionEvent actionEvent) {
 
 
-		ArrayList<Student> studentSkillSetList = dh.studentSkillSetList;
-
-		Map<String, Student> sMap1 = new HashMap<String, Student>();
-		sMap1.put(studentSkillSetList.get(0).getId().toUpperCase(), studentSkillSetList.get(0));
-		sMap1.put(studentSkillSetList.get(1).getId().toUpperCase(), studentSkillSetList.get(1));
-		sMap1.put(studentSkillSetList.get(2).getId().toUpperCase(), studentSkillSetList.get(2));
-		sMap1.put(studentSkillSetList.get(3).getId().toUpperCase(), studentSkillSetList.get(3));
-
-		Map<String, Student> sMap2 = new HashMap<String, Student>();
-		sMap2.put(studentSkillSetList.get(4).getId().toUpperCase(), studentSkillSetList.get(4));
-		sMap2.put(studentSkillSetList.get(5).getId().toUpperCase(), studentSkillSetList.get(5));
-		sMap2.put(studentSkillSetList.get(6).getId().toUpperCase(), studentSkillSetList.get(6));
-		sMap2.put(studentSkillSetList.get(7).getId().toUpperCase(), studentSkillSetList.get(7));
-
-		Map<String, Student> sMap3 = new HashMap<String, Student>();
-		sMap3.put(studentSkillSetList.get(8).getId().toUpperCase(), studentSkillSetList.get(8));
-		sMap3.put(studentSkillSetList.get(9).getId().toUpperCase(), studentSkillSetList.get(9));
-		sMap3.put(studentSkillSetList.get(10).getId().toUpperCase(), studentSkillSetList.get(10));
-		sMap3.put(studentSkillSetList.get(11).getId().toUpperCase(), studentSkillSetList.get(11));
-
-		Map<String, Student> sMap4 = new HashMap<String, Student>();
-		sMap4.put(studentSkillSetList.get(12).getId().toUpperCase(), studentSkillSetList.get(12));
-		sMap4.put(studentSkillSetList.get(13).getId().toUpperCase(), studentSkillSetList.get(13));
-		sMap4.put(studentSkillSetList.get(14).getId().toUpperCase(), studentSkillSetList.get(14));
-		sMap4.put(studentSkillSetList.get(15).getId().toUpperCase(), studentSkillSetList.get(15));
-
-		Map<String, Student> sMap5 = new HashMap<String, Student>();
-		sMap5.put(studentSkillSetList.get(16).getId().toUpperCase(), studentSkillSetList.get(16));
-		sMap5.put(studentSkillSetList.get(17).getId().toUpperCase(), studentSkillSetList.get(17));
-		sMap5.put(studentSkillSetList.get(18).getId().toUpperCase(), studentSkillSetList.get(18));
-		sMap5.put(studentSkillSetList.get(19).getId().toUpperCase(), studentSkillSetList.get(19));
-
-		Team t1 = new Team(dh.projectList.get(0), sMap1);
-		Team t2 = new Team(dh.projectList.get(1), sMap2);
-		Team t3 = new Team(dh.projectList.get(2), sMap3);
-		Team t4 = new Team(dh.projectList.get(3), sMap4);
-		Team t5 = new Team(dh.projectList.get(4), sMap5);
-
+//		ArrayList<Student> studentSkillSetList = dh.studentSkillSetList;
+//
+//		Map<String, Student> sMap1 = new HashMap<String, Student>();
+//		sMap1.put(studentSkillSetList.get(0).getId().toUpperCase(), studentSkillSetList.get(0));
+//		sMap1.put(studentSkillSetList.get(1).getId().toUpperCase(), studentSkillSetList.get(1));
+//		sMap1.put(studentSkillSetList.get(2).getId().toUpperCase(), studentSkillSetList.get(2));
+//		sMap1.put(studentSkillSetList.get(3).getId().toUpperCase(), studentSkillSetList.get(3));
+//
+//		Map<String, Student> sMap2 = new HashMap<String, Student>();
+//		sMap2.put(studentSkillSetList.get(4).getId().toUpperCase(), studentSkillSetList.get(4));
+//		sMap2.put(studentSkillSetList.get(5).getId().toUpperCase(), studentSkillSetList.get(5));
+//		sMap2.put(studentSkillSetList.get(6).getId().toUpperCase(), studentSkillSetList.get(6));
+//		sMap2.put(studentSkillSetList.get(7).getId().toUpperCase(), studentSkillSetList.get(7));
+//
+//		Map<String, Student> sMap3 = new HashMap<String, Student>();
+//		sMap3.put(studentSkillSetList.get(8).getId().toUpperCase(), studentSkillSetList.get(8));
+//		sMap3.put(studentSkillSetList.get(9).getId().toUpperCase(), studentSkillSetList.get(9));
+//		sMap3.put(studentSkillSetList.get(10).getId().toUpperCase(), studentSkillSetList.get(10));
+//		sMap3.put(studentSkillSetList.get(11).getId().toUpperCase(), studentSkillSetList.get(11));
+//
+//		Map<String, Student> sMap4 = new HashMap<String, Student>();
+//		sMap4.put(studentSkillSetList.get(12).getId().toUpperCase(), studentSkillSetList.get(12));
+//		sMap4.put(studentSkillSetList.get(13).getId().toUpperCase(), studentSkillSetList.get(13));
+//		sMap4.put(studentSkillSetList.get(14).getId().toUpperCase(), studentSkillSetList.get(14));
+//		sMap4.put(studentSkillSetList.get(15).getId().toUpperCase(), studentSkillSetList.get(15));
+//
+//		Map<String, Student> sMap5 = new HashMap<String, Student>();
+//		sMap5.put(studentSkillSetList.get(16).getId().toUpperCase(), studentSkillSetList.get(16));
+//		sMap5.put(studentSkillSetList.get(17).getId().toUpperCase(), studentSkillSetList.get(17));
+//		sMap5.put(studentSkillSetList.get(18).getId().toUpperCase(), studentSkillSetList.get(18));
+//		sMap5.put(studentSkillSetList.get(19).getId().toUpperCase(), studentSkillSetList.get(19));
+//
+//		Team t1 = new Team(dh.projectList.get(0), sMap1);
+//		Team t2 = new Team(dh.projectList.get(1), sMap2);
+//		Team t3 = new Team(dh.projectList.get(2), sMap3);
+//		Team t4 = new Team(dh.projectList.get(3), sMap4);
+//		Team t5 = new Team(dh.projectList.get(4), sMap5);
+//
 		ArrayList<Team> teams=new ArrayList<>();
 		teams.add(t1);
 		teams.add(t2);
 		teams.add(t3);
 		teams.add(t4);
 		teams.add(t5);
+
 
 		double gap=Double.MAX_VALUE;
 		ArrayList<Team> calcTeams=swapTeamMaxMaxAndTeamMinMin(teams,gap);
