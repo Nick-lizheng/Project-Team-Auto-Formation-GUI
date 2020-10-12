@@ -20,6 +20,11 @@ public class SwapAction implements Action {
     public void undo() {
 
     }
+    
+    @Override
+    public void redo() {
+    	
+    }
 
     @Override
     public String getName() {

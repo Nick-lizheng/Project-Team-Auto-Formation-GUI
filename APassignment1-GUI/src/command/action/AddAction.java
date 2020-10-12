@@ -94,6 +94,11 @@ public class AddAction implements Action {
         selectCheckBox.setSelected(true);
 
     }
+    
+   @Override
+   public void redo() {
+	   
+   }
 
     @Override
     public String getName() {

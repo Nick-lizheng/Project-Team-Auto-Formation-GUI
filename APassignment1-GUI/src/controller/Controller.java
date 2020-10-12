@@ -69,6 +69,8 @@ public class Controller {
 	
 	
 	
+	@FXML
+	private Button redo;
 	
 	@FXML
 	private TableView<Student> tableTeam;
@@ -627,4 +629,13 @@ public class Controller {
 		CommandManager manager = CommandManager.getInstance();
 		manager.undo();
 	}
+	
+
+    @FXML
+    void redoAction(ActionEvent event) {
+    	CommandManager manager = CommandManager.getInstance();
+		manager.redo();
+    }
+	
+	
 }

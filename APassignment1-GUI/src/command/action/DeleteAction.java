@@ -126,6 +126,11 @@ public class DeleteAction implements Action {
         selectCheckBoxList.clear();
 
     }
+    
+    @Override
+    public void redo() {
+    	
+    }
 
     @Override
     public String getName() {
