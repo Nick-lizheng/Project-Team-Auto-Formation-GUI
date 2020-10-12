@@ -66,8 +66,8 @@ public class AddAction implements Action {
     @Override
     public void undo() {
 
-        selectCheckBox.setText("");
-        selectCheckBox.setSelected(true);
+        Studentbox.getItems().add(student);
+
         if (s.substring(0, 2).equals("t1")) {
             sMap1.remove(selectCheckBox.getText());
             System.out.println(s.substring(0, 2));
@@ -89,7 +89,9 @@ public class AddAction implements Action {
             System.out.println(s.substring(0, 2));
             System.out.println(sMap5);
         }
-        Studentbox.getItems().add(student);
+
+        selectCheckBox.setText("");
+        selectCheckBox.setSelected(true);
 
     }
 
