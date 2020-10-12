@@ -183,6 +183,6 @@
       <Button fx:id="AutoSwap" layoutX="388.0" layoutY="314.0" mnemonicParsing="false" onAction="#autoSwapAction" text="AutoSwap" />
       <Button fx:id="undo" layoutX="166.0" layoutY="348.0" mnemonicParsing="false" onAction="#undoAction" text="undo" />
       <Label fx:id="sd1" layoutX="124.0" layoutY="675.0" text="Standard deviation" />
-      <Label fx:id="sd3" layoutX="851.0" layoutY="675.0" text="Standard deviation" />
+      <Label fx:id="sd3" layoutX="811.0" layoutY="675.0" text="Standard deviation" />
    </children>
 </AnchorPane>

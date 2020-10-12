@@ -36,6 +36,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import model.DataHandler;
 import model.Project;
+import model.StanderDeviation;
 import model.Student;
 import model.Team;
 
@@ -510,10 +511,11 @@ public class Controller {
 		bc3.getData().clear();
 		bc3.getData().add(dataSeries3);
 		
-		double []result = new double[4];
 		
 		
-		sd3.setText("SD" + result);
+		//display the SD for AverageCompetencyLevel
+		double []result = {t1.getAverageCompetencyLevel(),t2.getAverageCompetencyLevel(),t3.getAverageCompetencyLevel(),t4.getAverageCompetencyLevel(),t5.getAverageCompetencyLevel()};
+		sd3.setText("Stander Deviation: " + StanderDeviation.calculateSD(result));
 
 	}
 
