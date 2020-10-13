@@ -760,6 +760,7 @@ public class Controller {
 			minSMap.put(maxStu.getId().toUpperCase(),maxStu);
 
 			System.out.println("Swap:"+maxStu.getId().toUpperCase()+","+minStu.getId().toUpperCase());
+			System.out.println("***************************************************************"+"\n");
 
 			Student finalMaxStu = maxStu;
 			Student finalMinStu = minStu;
@@ -794,7 +795,6 @@ public class Controller {
 					minCheckBox.setText(c);
 				}
 			});
-
 			return swapTeamMaxMaxAndTeamMinMin(teams,tmpGap);
 		}
 		else{
