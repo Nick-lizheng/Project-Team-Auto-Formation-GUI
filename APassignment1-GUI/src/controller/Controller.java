@@ -2,16 +2,12 @@ package controller;
 /**
  * Li Zheng 
  */
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import command.CommandManager;
 import command.action.AddAction;
 import command.action.DeleteAction;
+import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -663,17 +659,44 @@ public class Controller {
 //		Team t4 = new Team(dh.projectList.get(3), sMap4);
 //		Team t5 = new Team(dh.projectList.get(4), sMap5);
 //
-		ArrayList<Team> teams=new ArrayList<>();
-		teams.add(t1);
-		teams.add(t2);
-		teams.add(t3);
-		teams.add(t4);
-		teams.add(t5);
+
+		//add thread
+		Thread autoThread=new Thread(){
+			public void run(){
+				ArrayList<Team> teams=new ArrayList<>();
+				teams.add(t1);
+				teams.add(t2);
+				teams.add(t3);
+				teams.add(t4);
+				teams.add(t5);
 
 
-		double gap=Double.MAX_VALUE;
-		ArrayList<Team> calcTeams=swapTeamMaxMaxAndTeamMinMin(teams,gap);
+				double gap=Double.MAX_VALUE;
+				ArrayList<Team> calcTeams=swapTeamMaxMaxAndTeamMinMin(teams,gap);
 
+//				Platform.runLater(new Runnable() {
+//					@Override
+//					public void run() {
+//						//set ui
+//						for (int i = 0; i < calcTeams.size(); i++) {
+//							Team team=calcTeams.get(i);
+//							Map<String, Student> sMap=team.getStudentMap();
+//							int j=0;
+//							for(String str: sMap.keySet()) {
+//								j=j+1;
+//								String checkBoxKeyStr="t"+(i+1)+""+j;
+//								CheckBox checkBox=checkBoxMap.get(checkBoxKeyStr);
+//								Student student=sMap.get(str);
+//								checkBox.setText(student.getId().toUpperCase());
+//								Studentbox.getItems().remove(student);
+//							}
+//						}
+//					}
+//				});
+			}
+		};
+		autoThread.setDaemon(true);
+		autoThread.start();
 	}
 
 	private ArrayList<Team> swapTeamMaxMaxAndTeamMinMin(ArrayList<Team> teams,double gap){
@@ -729,6 +752,7 @@ public class Controller {
 				}
 			}
 
+			//swap smap
 			maxSMap.remove(maxStu.getId().toUpperCase());
 			maxSMap.put(minStu.getId().toUpperCase(),minStu);
 
@@ -736,6 +760,40 @@ public class Controller {
 			minSMap.put(maxStu.getId().toUpperCase(),maxStu);
 
 			System.out.println("Swap:"+maxStu.getId().toUpperCase()+","+minStu.getId().toUpperCase());
+
+			Student finalMaxStu = maxStu;
+			Student finalMinStu = minStu;
+
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+
+					CheckBox maxCheckBox = null;
+					CheckBox minCheckBox = null;
+
+					String maxStr=null;
+					String minStr=null;
+
+					//clear all checkbox selection
+					for (String str:checkBoxMap.keySet()) {
+						checkBoxMap.get(str).setSelected(false);
+						if(checkBoxMap.get(str).getText().equals(finalMaxStu.getId().toUpperCase())){
+							maxCheckBox=checkBoxMap.get(str);
+							maxStr=str;
+						}
+						if(checkBoxMap.get(str).getText().equals(finalMinStu.getId().toUpperCase())){
+							minCheckBox=checkBoxMap.get(str);
+							minStr=str;
+						}
+					}
+
+					//swap checkbox String
+					String c = "";
+					c = maxCheckBox.getText();
+					maxCheckBox.setText(minCheckBox.getText());
+					minCheckBox.setText(c);
+				}
+			});
 
 			return swapTeamMaxMaxAndTeamMinMin(teams,tmpGap);
 		}
