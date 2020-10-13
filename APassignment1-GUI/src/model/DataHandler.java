@@ -195,7 +195,7 @@ public class DataHandler {
 		System.out.println("The current working directory is " + currentDirectory);
 		File file = new File("studentinfo.txt");
 
-		if (file.exists()) {
+		if (file.exists()&&studentSkillSetList.isEmpty()) {
 			readFile("studentinfo.txt");
 			System.out.println("Available students " + studentSkillSetList.size());
 			for (Student s : studentSkillSetList) {
@@ -339,7 +339,7 @@ public class DataHandler {
 	public void addStudentPreferences() {
 		boolean found = false;
 		File file = new File("studentinfo.txt");
-		if (file.exists()) {
+		if (file.exists()&&studentSkillSetList.isEmpty()) {
 			readFile("studentinfo.txt");
 
 		} else {
