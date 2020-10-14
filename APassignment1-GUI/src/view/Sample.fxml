@@ -181,6 +181,8 @@
         </columns>
       </TableView>
       <Button fx:id="AutoSwap" layoutX="388.0" layoutY="314.0" mnemonicParsing="false" onAction="#autoSwapAction" text="AutoSwap" />
+       <Button fx:id="Save" layoutX="388.0" layoutY="348.0" mnemonicParsing="false" onAction="#saveAction" text="Save" />
+       <Button fx:id="Import" layoutX="318.0" layoutY="348.0" mnemonicParsing="false" onAction="#importTxtAction" text="Import" />
       <Button fx:id="undo" layoutX="166.0" layoutY="348.0" mnemonicParsing="false" onAction="#undoAction" text="Undo" />
       <Label fx:id="sd1" layoutX="124.0" layoutY="675.0" text="Standard deviation" />
       <Label fx:id="sd3" layoutX="811.0" layoutY="675.0" text="Standard deviation" />

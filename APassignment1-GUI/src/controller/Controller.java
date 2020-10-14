@@ -2,6 +2,7 @@ package controller;
 /**
  * Li Zheng 
  */
+import java.io.File;
 import java.util.*;
 
 import command.CommandManager;
@@ -30,6 +31,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
+import javafx.stage.FileChooser;
 import model.DataHandler;
 import model.Project;
 import model.StanderDeviation;
@@ -813,6 +815,55 @@ public class Controller {
     	CommandManager manager = CommandManager.getInstance();
 		manager.redo();
     }
-	
-	
+
+
+	public void saveAction(ActionEvent actionEvent) {
+	}
+
+	public void importTxtAction(ActionEvent actionEvent) {
+
+		FileChooser fileChooser = new FileChooser();
+		File file = fileChooser.showOpenDialog(tableTeam.getScene().getWindow());
+		if (file != null) {
+			dh.readFormTeamFromFile(file);
+		}
+
+		ArrayList<Team> teams =dh.teamList;
+		for (int i = 0; i < teams.size(); i++) {
+			Team tmpTeam=teams.get(i);
+			Project tmpProject=tmpTeam.getProject();
+			if(i==0){
+				team1ProID.setText(tmpProject.getId() + " " + tmpProject.getRanking());
+				t1=teams.get(0);
+			}
+			if(i==1){
+				team2ProID.setText(tmpProject.getId() + " " + tmpProject.getRanking());
+				t2=teams.get(1);
+			}
+			if(i==2){
+				team3ProID.setText(tmpProject.getId() + " " + tmpProject.getRanking());
+				t3=teams.get(2);
+			}
+			if(i==3){
+				team4ProID.setText(tmpProject.getId() + " " + tmpProject.getRanking());
+				t4=teams.get(3);
+			}
+			if(i==4){
+				team5ProID.setText(tmpProject.getId() + " " + tmpProject.getRanking());
+				t5=teams.get(4);
+			}
+
+			Map<String, Student> studentMap=tmpTeam.getStudentMap();
+			int j=1;
+			for (String  str:studentMap.keySet()) {
+				CheckBox tmpCheckBox=checkBoxMap.get("t"+(i+1)+""+j);
+				tmpCheckBox.setText(studentMap.get(str).getId().toUpperCase());
+
+				j=j+1;
+			}
+
+			Studentbox.getItems().clear();
+		}
+
+	}
 }

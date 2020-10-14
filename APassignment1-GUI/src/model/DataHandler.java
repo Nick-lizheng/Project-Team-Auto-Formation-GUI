@@ -1024,6 +1024,32 @@ public class DataHandler {
 		}
 
 	}
+
+	public void readFormTeamFromFile(File file) {
+		teamList.clear();
+		Team t = null;
+
+		try {
+			FileInputStream fileIn = new FileInputStream(file);
+			ObjectInputStream in = new ObjectInputStream(fileIn);
+			while (fileIn.available() > 0) {
+				t = (Team) in.readObject();// read the object from TXT, and the type is Project.
+
+				teamList.add(t);
+
+			}
+			in.close();
+			fileIn.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return;
+		} catch (ClassNotFoundException e) {
+			System.err.println("Project class not found.");
+			e.printStackTrace();
+			return;
+		}
+
+	}
 	
 	
 
