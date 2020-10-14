@@ -122,7 +122,7 @@
             <CheckBox fx:id="team5checkbox4" mnemonicParsing="false" prefHeight="18.0" prefWidth="152.0" style="-fx-background-color: white;" GridPane.rowIndex="4" />
          </children>
       </GridPane>
-      <BarChart fx:id="bc2" layoutX="335.0" layoutY="422.0" prefHeight="230.0" prefWidth="378.0" title="Preference persentage(%)">
+      <BarChart fx:id="bc2" animated="false" layoutX="335.0" layoutY="422.0" prefHeight="230.0" prefWidth="378.0" title="Preference persentage(%)">
         <xAxis>
           <CategoryAxis side="BOTTOM" fx:id="xaxis2" />
         </xAxis>
@@ -130,7 +130,7 @@
           <NumberAxis fx:id="yaxis2" side="LEFT" upperBound="6.0" />
         </yAxis>
       </BarChart>
-      <BarChart fx:id="bc3" layoutX="713.0" layoutY="422.0" prefHeight="230.0" prefWidth="306.0" title="Average Competency Level">
+      <BarChart fx:id="bc3" animated="false" layoutX="713.0" layoutY="422.0" prefHeight="230.0" prefWidth="306.0" title="Average Competency Level">
         <xAxis>
           <CategoryAxis side="BOTTOM" fx:id="xaxis3" />
         </xAxis>
@@ -138,7 +138,7 @@
           <NumberAxis fx:id="yaxis3" side="LEFT" upperBound="2.0" />
         </yAxis>
       </BarChart>
-      <BarChart fx:id="bc1" layoutX="2.0" layoutY="422.0" prefHeight="230.0" prefWidth="334.0" title="Skill Gap">
+      <BarChart fx:id="bc1" animated="false" layoutX="2.0" layoutY="422.0" prefHeight="230.0" prefWidth="334.0" title="Skill Gap">
         <xAxis>
           <CategoryAxis side="BOTTOM" fx:id="xaxis1" />
         </xAxis>
