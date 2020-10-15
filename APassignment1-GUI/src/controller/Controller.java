@@ -48,11 +48,11 @@ public class Controller {
 	HashMap<String, Map<String, Student>> swapMap = new HashMap<String, Map<String, Student>>();
 	HashMap<String, CheckBox> checkBoxMap = new HashMap<String, CheckBox>();
 	HashMap<String, TextField> textMap = new HashMap<String, TextField>();
-	Map<String, Student> sMap1 = new HashMap<String, Student>();
-	Map<String, Student> sMap2 = new HashMap<String, Student>();
-	Map<String, Student> sMap3 = new HashMap<String, Student>();
-	Map<String, Student> sMap4 = new HashMap<String, Student>();
-	Map<String, Student> sMap5 = new HashMap<String, Student>();
+//	Map<String, Student> sMap1 = new HashMap<String, Student>();
+//	Map<String, Student> sMap2 = new HashMap<String, Student>();
+//	Map<String, Student> sMap3 = new HashMap<String, Student>();
+//	Map<String, Student> sMap4 = new HashMap<String, Student>();
+//	Map<String, Student> sMap5 = new HashMap<String, Student>();
 	Map<String, Student> allStudents = new HashMap<String, Student>();
 
 	ObservableList<Student> list1 =FXCollections.observableArrayList();
@@ -265,30 +265,28 @@ public class Controller {
 		checkBoxMap.put("t52", team5checkbox2);
 		checkBoxMap.put("t53", team5checkbox3);
 		checkBoxMap.put("t54", team5checkbox4);
-		swapMap.put("t11", sMap1);
-		swapMap.put("t12", sMap1);
-		swapMap.put("t13", sMap1);
-		swapMap.put("t14", sMap1);
-		swapMap.put("t21", sMap2);
-		swapMap.put("t22", sMap2);
-		swapMap.put("t23", sMap2);
-		swapMap.put("t24", sMap2);
-		swapMap.put("t31", sMap3);
-		swapMap.put("t32", sMap3);
-		swapMap.put("t33", sMap3);
-		swapMap.put("t34", sMap3);
-		swapMap.put("t41", sMap4);
-		swapMap.put("t42", sMap4);
-		swapMap.put("t43", sMap4);
-		swapMap.put("t44", sMap4);
-		swapMap.put("t51", sMap5);
-		swapMap.put("t52", sMap5);
-		swapMap.put("t53", sMap5);
-		swapMap.put("t54", sMap5);
+//		swapMap.put("t11", sMap1);
+//		swapMap.put("t12", sMap1);
+//		swapMap.put("t13", sMap1);
+//		swapMap.put("t14", sMap1);
+//		swapMap.put("t21", sMap2);
+//		swapMap.put("t22", sMap2);
+//		swapMap.put("t23", sMap2);
+//		swapMap.put("t24", sMap2);
+//		swapMap.put("t31", sMap3);
+//		swapMap.put("t32", sMap3);
+//		swapMap.put("t33", sMap3);
+//		swapMap.put("t34", sMap3);
+//		swapMap.put("t41", sMap4);
+//		swapMap.put("t42", sMap4);
+//		swapMap.put("t43", sMap4);
+//		swapMap.put("t44", sMap4);
+//		swapMap.put("t51", sMap5);
+//		swapMap.put("t52", sMap5);
+//		swapMap.put("t53", sMap5);
+//		swapMap.put("t54", sMap5);
 
-		// read the data from milestone2
-		dh.readAll();
-		dh.readFormTeam();
+
 
 		//read from DB
 		DBDataHandler.readTeamFromDB();
@@ -296,6 +294,10 @@ public class Controller {
 		dh.studentSkillSetList = DBDataHandler.studentSkillSetList;
 		dh.projectList = DBDataHandler.projectList;
 		dh.teamList = DBDataHandler.teamList;
+
+		// read the data from milestone2
+//		dh.readAll();
+//		dh.readFormTeam();
 
 		// add student in ChoiceBox
 		for (Student s : dh.studentSkillSetList) {
@@ -312,11 +314,13 @@ public class Controller {
 		yaxis3.setLabel("Number of Average Competency Level");
 
 		// setting the label with team information.
-		team1ProID.setText(dh.projectList.get(0).getId() + " " + dh.projectList.get(0).getRanking());
-		team2ProID.setText(dh.projectList.get(1).getId() + " " + dh.projectList.get(1).getRanking());
-		team3ProID.setText(dh.projectList.get(2).getId() + " " + dh.projectList.get(2).getRanking());
-		team4ProID.setText(dh.projectList.get(3).getId() + " " + dh.projectList.get(3).getRanking());
-		team5ProID.setText(dh.projectList.get(4).getId() + " " + dh.projectList.get(4).getRanking());
+		if(dh.projectList.size()==5) {
+			team1ProID.setText(dh.projectList.get(0).getId() + " " + dh.projectList.get(0).getRanking());
+			team2ProID.setText(dh.projectList.get(1).getId() + " " + dh.projectList.get(1).getRanking());
+			team3ProID.setText(dh.projectList.get(2).getId() + " " + dh.projectList.get(2).getRanking());
+			team4ProID.setText(dh.projectList.get(3).getId() + " " + dh.projectList.get(3).getRanking());
+			team5ProID.setText(dh.projectList.get(4).getId() + " " + dh.projectList.get(4).getRanking());
+		}
 
 //		 add checkbox at eventlistenter.
 		for (String s : checkBoxMap.keySet()) {
@@ -363,7 +367,7 @@ public class Controller {
 				if (checkBoxMap.get(s).isSelected() && checkBoxMap.get(s).getText().isEmpty()) {
 
 					CommandManager manager = CommandManager.getInstance();
-					manager.execute(new AddAction("Add "+s+","+Studentbox.getValue(),s,checkBoxMap.get(s),Studentbox,Studentbox.getValue(),sMap1,sMap2,sMap3,sMap4,sMap5));
+					manager.execute(new AddAction("Add "+s+","+Studentbox.getValue(),s,checkBoxMap.get(s),Studentbox,Studentbox.getValue(),t1.getStudentMap(),t2.getStudentMap(),t3.getStudentMap(),t4.getStudentMap(),t5.getStudentMap()));
 
 //					checkBoxMap.get(s).setText(Studentbox.getValue().getId().toUpperCase());
 //					checkBoxMap.get(s).setSelected(false);
@@ -403,11 +407,11 @@ public class Controller {
 
 		}
 
-		t1 = new Team(dh.projectList.get(0), sMap1);
-		t2 = new Team(dh.projectList.get(1), sMap2);
-		t3 = new Team(dh.projectList.get(2), sMap3);
-		t4 = new Team(dh.projectList.get(3), sMap4);
-		t5 = new Team(dh.projectList.get(4), sMap5);
+//		t1 = new Team(dh.projectList.get(0), sMap1);
+//		t2 = new Team(dh.projectList.get(1), sMap2);
+//		t3 = new Team(dh.projectList.get(2), sMap3);
+//		t4 = new Team(dh.projectList.get(3), sMap4);
+//		t5 = new Team(dh.projectList.get(4), sMap5);
 
 		System.out.println("add a student in a team");
 	}
@@ -522,7 +526,7 @@ public class Controller {
 	void deleteBotton(ActionEvent event) {
 
 		CommandManager manager = CommandManager.getInstance();
-		manager.execute(new DeleteAction("Delete ",checkBoxMap,dh,Studentbox,sMap1,sMap2,sMap3,sMap4,sMap5));
+		manager.execute(new DeleteAction("Delete ",checkBoxMap,dh,Studentbox,t1.getStudentMap(),t2.getStudentMap(),t3.getStudentMap(),t4.getStudentMap(),t5.getStudentMap()));
 
 //		for (String s : checkBoxMap.keySet()) {
 //			if (checkBoxMap.get(s).isSelected()) {
@@ -563,57 +567,57 @@ public class Controller {
     @FXML
     void team1detail(MouseEvent event) {
     	tableTeam.getItems().clear();
-		for(String stu1: sMap1.keySet()) {
-			list1.add(sMap1.get(stu1));			
+		for(String stu1: t1.getStudentMap().keySet()) {
+			list1.add(t1.getStudentMap().get(stu1));
 		}
 		tableTeam.setItems(list1);
-		System.out.println(sMap1);
+		System.out.println(t1.getStudentMap());
 		
     }
 
     @FXML
     void team2detail(MouseEvent event) {
     	tableTeam.getItems().clear();
-    	for(String stu1: sMap2.keySet()) {
-			list2.add(sMap2.get(stu1));			
+    	for(String stu1: t2.getStudentMap().keySet()) {
+			list2.add(t2.getStudentMap().get(stu1));
 		}
 		tableTeam.setItems(list2);
-		System.out.println(sMap2);
+		System.out.println(t2.getStudentMap());
     }
 
     @FXML
     void team3detail(MouseEvent event) {
     	tableTeam.getItems().clear();
-    	for(String stu1: sMap3.keySet()) {
-			list3.add(sMap3.get(stu1));			
+    	for(String stu1: t3.getStudentMap().keySet()) {
+			list3.add(t3.getStudentMap().get(stu1));
 		}
 		tableTeam.setItems(list3);
-		System.out.println(sMap3);
+		System.out.println(t3.getStudentMap());
 
     }
 
     @FXML
     void team4detail(MouseEvent event) {
     	tableTeam.getItems().clear();
-    	for(String stu1: sMap4.keySet()) {
-			list4.add(sMap4.get(stu1));			
+    	for(String stu1: t4.getStudentMap().keySet()) {
+			list4.add(t4.getStudentMap().get(stu1));
 		}
 		tableTeam.setItems(list4);
-		System.out.println(sMap4);
+		System.out.println(t4.getStudentMap());
 
     }
 
     @FXML
     void team5detail(MouseEvent event) {
     	tableTeam.getItems().clear();
-    	for(String stu1: sMap5.keySet()) {
-			list5.add(sMap5.get(stu1));			
+    	for(String stu1: t5.getStudentMap().keySet()) {
+			list5.add(t5.getStudentMap().get(stu1));
 		}
 		tableTeam.setItems(list5);
 		//below is for backend test
-		for(String s : sMap5.keySet()) {
-			System.out.println(sMap5.get(s));
-			System.out.println(sMap5.get(s).getCompetencyLevel());
+		for(String s : t5.getStudentMap().keySet()) {
+			System.out.println(t5.getStudentMap().get(s));
+			System.out.println(t5.getStudentMap().get(s).getCompetencyLevel());
 		}
 		
 
@@ -817,45 +821,102 @@ public class Controller {
 
 
     private void initUIFromData(){
-		ArrayList<Team> teams =dh.teamList;
-		for (int i = 0; i < teams.size(); i++) {
-			Team tmpTeam=teams.get(i);
-			Project tmpProject=tmpTeam.getProject();
-			if(i==0){
-				team1ProID.setText(tmpProject.getId() + " " + tmpProject.getRanking());
-				t1=teams.get(0);
-			}
-			if(i==1){
-				team2ProID.setText(tmpProject.getId() + " " + tmpProject.getRanking());
-				t2=teams.get(1);
-			}
-			if(i==2){
-				team3ProID.setText(tmpProject.getId() + " " + tmpProject.getRanking());
-				t3=teams.get(2);
-			}
-			if(i==3){
-				team4ProID.setText(tmpProject.getId() + " " + tmpProject.getRanking());
-				t4=teams.get(3);
-			}
-			if(i==4){
-				team5ProID.setText(tmpProject.getId() + " " + tmpProject.getRanking());
-				t5=teams.get(4);
-			}
+		try {
+			ArrayList<Team> teams = dh.teamList;
+			for (int i = 0; i < teams.size(); i++) {
+				Team tmpTeam = teams.get(i);
+				Project tmpProject = tmpTeam.getProject();
+				if (i == 0) {
+					team1ProID.setText(tmpProject.getId() + " " + tmpProject.getRanking());
+					t1 = teams.get(0);
+					swapMap.put("t11", t1.getStudentMap());
+					swapMap.put("t12", t1.getStudentMap());
+					swapMap.put("t13", t1.getStudentMap());
+					swapMap.put("t14", t1.getStudentMap());
 
-			Map<String, Student> studentMap=tmpTeam.getStudentMap();
-			int j=1;
-			for (String  str:studentMap.keySet()) {
-				CheckBox tmpCheckBox=checkBoxMap.get("t"+(i+1)+""+j);
-				tmpCheckBox.setText(studentMap.get(str).getId().toUpperCase());
+				}
+				if (i == 1) {
+					team2ProID.setText(tmpProject.getId() + " " + tmpProject.getRanking());
+					t2 = teams.get(1);
+					swapMap.put("t21", t2.getStudentMap());
+					swapMap.put("t22", t2.getStudentMap());
+					swapMap.put("t23", t2.getStudentMap());
+					swapMap.put("t24", t2.getStudentMap());
 
-				j=j+1;
+				}
+				if (i == 2) {
+					team3ProID.setText(tmpProject.getId() + " " + tmpProject.getRanking());
+					t3 = teams.get(2);
+					swapMap.put("t31", t3.getStudentMap());
+					swapMap.put("t32", t3.getStudentMap());
+					swapMap.put("t33", t3.getStudentMap());
+					swapMap.put("t34", t3.getStudentMap());
+
+				}
+				if (i == 3) {
+					team4ProID.setText(tmpProject.getId() + " " + tmpProject.getRanking());
+					t4 = teams.get(3);
+					swapMap.put("t41", t4.getStudentMap());
+					swapMap.put("t42", t4.getStudentMap());
+					swapMap.put("t43", t4.getStudentMap());
+					swapMap.put("t44", t4.getStudentMap());
+
+				}
+				if (i == 4) {
+					team5ProID.setText(tmpProject.getId() + " " + tmpProject.getRanking());
+					t5 = teams.get(4);
+					swapMap.put("t51", t5.getStudentMap());
+					swapMap.put("t52", t5.getStudentMap());
+					swapMap.put("t53", t5.getStudentMap());
+					swapMap.put("t54", t5.getStudentMap());
+				}
+
+				Map<String, Student> studentMap = tmpTeam.getStudentMap();
+				int j = 1;
+				for (String str : studentMap.keySet()) {
+					CheckBox tmpCheckBox = checkBoxMap.get("t" + (i + 1) + "" + j);
+					tmpCheckBox.setText(studentMap.get(str).getId().toUpperCase());
+
+					j = j + 1;
+				}
+
+				Studentbox.getItems().clear();
 			}
-
-			Studentbox.getItems().clear();
+		}catch (Exception e){
+			e.printStackTrace();
 		}
+		System.out.println("init UI");
 	}
 
 	public void saveAction(ActionEvent actionEvent) {
+
+		boolean isAllFill=true;
+
+		for (String str:checkBoxMap.keySet()) {
+			String checkBoxStr=checkBoxMap.get(str).getText().trim();
+			if(checkBoxStr.equals("")){
+				isAllFill=false;
+				break;
+			}
+		}
+		if(!isAllFill){
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setContentText(ErrorMessages.CHECK_BOX_BLANK);
+			alert.show();
+		}else {
+			ArrayList<Team> teams = new ArrayList<>();
+			teams.add(t1);
+			teams.add(t2);
+			teams.add(t3);
+			teams.add(t4);
+			teams.add(t5);
+			boolean isSuc = DBDataHandler.save2DB(teams);
+			if (!isSuc) {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setContentText(ErrorMessages.SAVE_DB_EXCEPTION);
+				alert.show();
+			}
+		}
 	}
 
 	public void importTxtAction(ActionEvent actionEvent) {
