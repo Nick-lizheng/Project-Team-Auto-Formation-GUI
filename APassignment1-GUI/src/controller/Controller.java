@@ -32,11 +32,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
-import model.DataHandler;
-import model.Project;
-import model.StanderDeviation;
-import model.Student;
-import model.Team;
+import model.*;
 
 public class Controller {
 
@@ -294,6 +290,13 @@ public class Controller {
 		dh.readAll();
 		dh.readFormTeam();
 
+		//read from DB
+		DBDataHandler.readTeamFromDB();
+		dh.studentList = DBDataHandler.studentList;
+		dh.studentSkillSetList = DBDataHandler.studentSkillSetList;
+		dh.projectList = DBDataHandler.projectList;
+		dh.teamList = DBDataHandler.teamList;
+
 		// add student in ChoiceBox
 		for (Student s : dh.studentSkillSetList) {
 			Studentbox.getItems().addAll(s);
@@ -348,12 +351,8 @@ public class Controller {
 		preference.setCellValueFactory(new PropertyValueFactory<Student,String>("preferences"));
 		competencylevel.setCellValueFactory(new PropertyValueFactory<Student,Double>("competencyLevel"));
 //		skillgap.setCellValueFactory(new PropertyValueFactory<Student,String>("skillgap"));
-		
-		
-	
-		
-		
 
+		initUIFromData();
 	}
 
 	@FXML
@@ -817,17 +816,7 @@ public class Controller {
     }
 
 
-	public void saveAction(ActionEvent actionEvent) {
-	}
-
-	public void importTxtAction(ActionEvent actionEvent) {
-
-		FileChooser fileChooser = new FileChooser();
-		File file = fileChooser.showOpenDialog(tableTeam.getScene().getWindow());
-		if (file != null) {
-			dh.readFormTeamFromFile(file);
-		}
-
+    private void initUIFromData(){
 		ArrayList<Team> teams =dh.teamList;
 		for (int i = 0; i < teams.size(); i++) {
 			Team tmpTeam=teams.get(i);
@@ -864,6 +853,20 @@ public class Controller {
 
 			Studentbox.getItems().clear();
 		}
+	}
+
+	public void saveAction(ActionEvent actionEvent) {
+	}
+
+	public void importTxtAction(ActionEvent actionEvent) {
+
+		FileChooser fileChooser = new FileChooser();
+		File file = fileChooser.showOpenDialog(tableTeam.getScene().getWindow());
+		if (file != null) {
+			dh.readFormTeamFromFile(file);
+		}
+
+		initUIFromData();
 
 	}
 }
