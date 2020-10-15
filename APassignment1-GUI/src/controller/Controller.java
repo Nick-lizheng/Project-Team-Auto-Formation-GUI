@@ -898,6 +898,8 @@ public class Controller {
 				isAllFill=false;
 				break;
 			}
+			
+			
 		}
 		if(!isAllFill){
 			Alert alert = new Alert(AlertType.ERROR);
@@ -915,8 +917,14 @@ public class Controller {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setContentText(ErrorMessages.SAVE_DB_EXCEPTION);
 				alert.show();
+			}else {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setContentText(ErrorMessages.SAVE_TO_DB);
+				alert.show();
 			}
 		}
+		
+		
 	}
 
 	public void importTxtAction(ActionEvent actionEvent) {
