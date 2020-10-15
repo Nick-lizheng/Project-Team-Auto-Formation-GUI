@@ -9,7 +9,7 @@ import javafx.fxml.FXMLLoader;
 
 
 
-public class Main extends Application {
+public class MainUI extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {

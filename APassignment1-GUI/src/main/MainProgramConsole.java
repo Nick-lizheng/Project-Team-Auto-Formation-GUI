@@ -1,10 +1,10 @@
-package model;
+package main;
 
 import java.util.Scanner;
 
-import main.Main;
+import model.DataHandler;
 
-public class MainProgram {
+public class MainProgramConsole {
 
 	public static void main(String[] args) {
 	
@@ -43,7 +43,7 @@ public class MainProgram {
 				dh.disPlayTeamFinessMetrics();
 				break;
 			case "I":
-				Main.main(args);
+				MainUI.main(args);
 			case "J":
 				System.out.println("Quit sucess!!!");
 				System.exit(0);
