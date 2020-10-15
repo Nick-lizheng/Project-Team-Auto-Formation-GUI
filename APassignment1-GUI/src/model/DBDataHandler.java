@@ -56,7 +56,7 @@ public class DBDataHandler {
 
                     Student student=new Student(id,SkillSet,PERSONALITYTYPE.charAt(0),PERSONALICONFILC,Preference);
 
-
+                    //set skill map
                     int num = SkillSet.indexOf("P");
                     student.getSkillMap().put("P", Integer.parseInt(SkillSet.substring(num + 1, num + 2)));
 
@@ -69,7 +69,21 @@ public class DBDataHandler {
                     int num4 = SkillSet.indexOf("W");
                     student.getSkillMap().put("W", Integer.parseInt(SkillSet.substring(num4 + 1, num4 + 2)));
 
+
                     System.out.println(student.getSkillMap());
+                    
+                    
+                    //set preferencemap
+                    
+                    String[] words = Preference.split("\\s");
+					for (int i = 0; i < words.length - 1; i += 2) {
+						student.getPreferenceMap().putIfAbsent(words[i], 0);
+						student.getPreferenceMap().put(words[i], Integer.parseInt(words[i + 1]));
+					}
+					
+
+
+                    System.out.println(student.getPreferenceMap());
 
                     studentList.add(student);
                     studentSkillSetList.add(student);
@@ -96,6 +110,19 @@ public class DBDataHandler {
                     String ranking=resultSet.getString("Ranking");
 
                     Project project=new Project(title,id,DECRISTION,ownid,ranking);
+                    
+
+                    int num = ranking.indexOf("P");
+                    project.getRankingMap().put("P", Integer.parseInt(ranking.substring(num + 1, num + 2)));
+
+                    int num2 = ranking.indexOf("N");
+                    project.getRankingMap().put("N", Integer.parseInt(ranking.substring(num2 + 1, num2 + 2)));
+
+                    int num3 = ranking.indexOf("A");
+                    project.getRankingMap().put("A", Integer.parseInt(ranking.substring(num3 + 1, num3 + 2)));
+
+                    int num4 = ranking.indexOf("W");
+                    project.getRankingMap().put("W", Integer.parseInt(ranking.substring(num4 + 1, num4 + 2)));
 
                     projectList.add(project);
                     Map<String, Student> sMap=new HashMap<String, Student>();
