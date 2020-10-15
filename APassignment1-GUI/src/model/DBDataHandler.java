@@ -40,15 +40,22 @@ public class DBDataHandler {
 
                 while (resultSet.next()) {
                     System.out.println(resultSet.getString("id") + "," + resultSet.getString("Name") + ","
-                            + resultSet.getString("SkillSet") + "," + resultSet.getString("PERSONALITYTYPE") + "," + resultSet.getString("PERSONALICONFILC"));
+                            + resultSet.getString("SkillSet") + "," + resultSet.getString("PERSONALITYTYPE") + "," + resultSet.getString("PERSONALICONFILC") +","
+                            + resultSet.getString("Preference"));
+                	
+                
+                    
+                    
 
                     String id=resultSet.getString("id");
                     String name=resultSet.getString("Name");
                     String SkillSet=resultSet.getString("SkillSet");
                     String PERSONALITYTYPE=resultSet.getString("PERSONALITYTYPE");
                     String PERSONALICONFILC=resultSet.getString("PERSONALICONFILC");
+                    String Preference=resultSet.getString("Preference");
 
-                    Student student=new Student(id,SkillSet,PERSONALITYTYPE.charAt(0),PERSONALICONFILC);
+                    Student student=new Student(id,SkillSet,PERSONALITYTYPE.charAt(0),PERSONALICONFILC,Preference);
+
 
                     int num = SkillSet.indexOf("P");
                     student.getSkillMap().put("P", Integer.parseInt(SkillSet.substring(num + 1, num + 2)));
@@ -74,7 +81,9 @@ public class DBDataHandler {
                 resultSet2 = stmt.executeQuery(query2);
                 while (resultSet2.next()) {
                     System.out.println(resultSet.getString("id") + "," + resultSet.getString("Name") + ","
-                            + resultSet.getString("DECRISTION") + "," + resultSet.getString("ownid") + "," + resultSet.getString("sid1") + "," + resultSet.getString("sid2") + "," + resultSet.getString("sid3") + "," + resultSet.getString("sid4"));
+                            + resultSet.getString("DECRISTION") + "," + resultSet.getString("ownid") + "," + resultSet.getString("sid1") + "," + resultSet.getString("sid2") + "," + resultSet.getString("sid3") + "," + resultSet.getString("sid4")+","
+                            +resultSet.getString("Ranking"));
+                	
 
                     String id=resultSet.getString("id");
                     String title=resultSet.getString("Name");
@@ -84,8 +93,10 @@ public class DBDataHandler {
                     String sid2=resultSet.getString("sid2");
                     String sid3=resultSet.getString("sid3");
                     String sid4=resultSet.getString("sid4");
+                    String ranking=resultSet.getString("Ranking");
 
-                    Project project=new Project(title,id,DECRISTION,ownid,"");
+                    Project project=new Project(title,id,DECRISTION,ownid,ranking);
+
                     projectList.add(project);
                     Map<String, Student> sMap=new HashMap<String, Student>();
                     sMap.put(sid1,students.get(sid1));
@@ -149,7 +160,7 @@ public class DBDataHandler {
                     for (String stuIdStr:stuIdSet) {
                         Student student=teamList.get(i).getStudentMap().get(stuIdStr);
 
-                        String insertStr = "INSERT INTO " + TABLE_NAME +"(ID,Name,SKILLSET,PERSONALITYTYPE,PERSONALICONFILC)"+ " VALUES ('"+student.getId()+"','"+student.getId()+ "','"+student.getSkillset()+"','"+student.getPersionalityType()+"','"+student.getConflict()+"')";
+                        String insertStr = "INSERT INTO " + TABLE_NAME +"(ID,Name,SKILLSET,PERSONALITYTYPE,PERSONALICONFILC,Preference)"+ " VALUES ('"+student.getId()+"','"+student.getId()+ "','"+student.getSkillset()+"','"+student.getPersionalityType()+"','"+student.getConflict()+"','"+student.getPreferences()+"')";
                         result = stmt.executeUpdate(insertStr);
                         System.out.println(insertStr);
                         System.out.println("Insert into table " + TABLE_NAME + " executed successfully");
@@ -191,7 +202,7 @@ public class DBDataHandler {
                         j=j+1;
 
                     }
-                    String insertStr = "INSERT INTO " + TABLE_NAME2 + "(ID,NAME,DECRISTION,OWNID,SID1,SID2,SID3,SID4)"+" VALUES ('"+project.getId()+"','"+project.getTitle()+ "','"+project.getDesc()+"','"+project.getPoID()+"','"+sid1+"','"+sid2+"','"+sid3+"','"+sid4+"')";
+                    String insertStr = "INSERT INTO " + TABLE_NAME2 + "(ID,NAME,DECRISTION,OWNID,SID1,SID2,SID3,SID4,Ranking)"+" VALUES ('"+project.getId()+"','"+project.getTitle()+ "','"+project.getDesc()+"','"+project.getPoID()+"','"+sid1+"','"+sid2+"','"+sid3+"','"+sid4+"','"+project.getRanking()+"')";
                     result = stmt.executeUpdate(insertStr);
                     System.out.println(insertStr);
                     System.out.println("Insert into table " + TABLE_NAME2 + " executed successfully");

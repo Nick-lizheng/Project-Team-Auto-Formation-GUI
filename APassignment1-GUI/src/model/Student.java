@@ -39,6 +39,15 @@ public class Student implements Serializable {
 		this.conflict = conflict;
 		this.preferences = "";
 	}
+	
+	public Student(String id, String skillset, char persionalityType, String conflict,String preference) {
+		// super();
+		this.id = id;
+		this.skillset = skillset;
+		this.persionalityType = persionalityType;
+		this.conflict = conflict;
+		this.preferences = preference;
+	}
 
 	public Student(String id, String skillset) {
 		// super();
