@@ -26,6 +26,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class DataHandler {
+	Map<String,Project> projectValidator = new HashMap<String,Project>();
 	public ArrayList<Student> studentList = new ArrayList<Student>();
 	public ArrayList<Student> studentSkillSetList = new ArrayList<Student>();
 	public Set<Student> studentSet = new HashSet<Student>();
@@ -124,6 +125,8 @@ public class DataHandler {
 					System.out.println("New Record Added!");
 				} else {
 					System.err.println(" The ProjectOwnerID hava already exists! ");
+					System.out.println("");
+					continue;
 				}
 				writeToFile(projectOwnerMap);
 
@@ -139,6 +142,7 @@ public class DataHandler {
 	}
 
 	public void addProject() {
+		
 		System.out.println("Adding a Project...");
 		Scanner scan = new Scanner(System.in);
 		while (true)
@@ -178,7 +182,19 @@ public class DataHandler {
 //						+"A"+project.getRankingMap().get("A")+" "+"W"+project.getRankingMap().get("W");	
 //				project.setRanking(ranking);
 
-				writeToFile(project);
+				
+				if(!projectValidator.keySet().contains(id)) {
+					projectValidator.put(project.getId(), project);
+					writeToFile(project);
+				}else {
+					System.err.println(" The ProjectID hava already exists!, please try another one.");
+					System.err.println("");
+					continue;
+				}
+				
+				
+				
+				
 
 				return;
 			} catch (NumberFormatException nex) {
