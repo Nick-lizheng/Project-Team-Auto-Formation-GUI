@@ -123,7 +123,7 @@
             <CheckBox fx:id="team5checkbox4" mnemonicParsing="false" prefHeight="18.0" prefWidth="152.0" style="-fx-background-color: white;" GridPane.rowIndex="4" />
          </children>
       </GridPane>
-      <BarChart fx:id="bc2" animated="false" layoutX="333.0" layoutY="486.0" prefHeight="266.0" prefWidth="378.0" title="Preference persentage(%)">
+      <BarChart fx:id="bc2" animated="false" layoutX="401.0" layoutY="486.0" prefHeight="266.0" prefWidth="378.0" title="Preference persentage(%)">
         <xAxis>
           <CategoryAxis side="BOTTOM" fx:id="xaxis2" />
         </xAxis>
@@ -131,7 +131,7 @@
           <NumberAxis fx:id="yaxis2" side="LEFT" upperBound="6.0" />
         </yAxis>
       </BarChart>
-      <BarChart fx:id="bc3" animated="false" layoutX="711.0" layoutY="486.0" prefHeight="266.0" prefWidth="306.0" title="Average Competency Level">
+      <BarChart fx:id="bc3" animated="false" layoutX="806.0" layoutY="486.0" prefHeight="266.0" prefWidth="306.0" title="Average Competency Level">
         <xAxis>
           <CategoryAxis side="BOTTOM" fx:id="xaxis3" />
         </xAxis>
@@ -139,7 +139,7 @@
           <NumberAxis fx:id="yaxis3" minorTickCount="10" side="LEFT" tickLabelGap="1.0" upperBound="1.9" />
         </yAxis>
       </BarChart>
-      <BarChart fx:id="bc1" animated="false" layoutY="486.0" prefHeight="266.0" prefWidth="334.0" title="Skill Gap">
+      <BarChart fx:id="bc1" animated="false" layoutX="43.0" layoutY="486.0" prefHeight="266.0" prefWidth="334.0" title="Skill Gap">
         <xAxis>
           <CategoryAxis side="BOTTOM" fx:id="xaxis1" />
         </xAxis>
@@ -164,7 +164,7 @@
       <Label fx:id="team3ProID" layoutX="480.0" layoutY="78.0" text=" " />
       <Label fx:id="team4ProID" layoutX="698.0" layoutY="74.0" text=" " />
       <Label fx:id="team5ProID" layoutX="916.0" layoutY="78.0" text=" " />
-      <Button fx:id="Caculation" layoutX="491.0" layoutY="772.0" mnemonicParsing="false" onAction="#caculationBotton" text="Caculation" />
+      <Button fx:id="Caculation" layoutX="535.0" layoutY="772.0" mnemonicParsing="false" onAction="#caculationBotton" text="Caculation" />
       <ChoiceBox fx:id="Studentbox" layoutX="173.0" layoutY="343.0" prefHeight="23.0" prefWidth="334.0" />
       <Button fx:id="delete" layoutX="233.0" layoutY="378.0" mnemonicParsing="false" onAction="#deleteBotton" text="Delete" />
       <TableView fx:id="tableTeam" layoutX="543.0" layoutY="283.0" prefHeight="191.0" prefWidth="572.0">
