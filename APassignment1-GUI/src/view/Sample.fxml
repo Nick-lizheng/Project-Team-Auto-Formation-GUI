@@ -164,7 +164,7 @@
       <Label fx:id="team3ProID" layoutX="480.0" layoutY="78.0" text=" " />
       <Label fx:id="team4ProID" layoutX="698.0" layoutY="74.0" text=" " />
       <Label fx:id="team5ProID" layoutX="916.0" layoutY="78.0" text=" " />
-      <Button fx:id="Caculation" layoutX="471.0" layoutY="772.0" mnemonicParsing="false" onAction="#caculationBotton" text="Caculation" />
+      <Button fx:id="Caculation" layoutX="491.0" layoutY="772.0" mnemonicParsing="false" onAction="#caculationBotton" text="Caculation" />
       <ChoiceBox fx:id="Studentbox" layoutX="173.0" layoutY="343.0" prefHeight="23.0" prefWidth="334.0" />
       <Button fx:id="delete" layoutX="233.0" layoutY="378.0" mnemonicParsing="false" onAction="#deleteBotton" text="Delete" />
       <TableView fx:id="tableTeam" layoutX="543.0" layoutY="283.0" prefHeight="191.0" prefWidth="572.0">
@@ -186,7 +186,7 @@
        <Button fx:id="Import" layoutX="316.0" layoutY="412.0" mnemonicParsing="false" onAction="#importTxtAction" text="Import" />
       <Button fx:id="undo" layoutX="164.0" layoutY="412.0" mnemonicParsing="false" onAction="#undoAction" text="Undo" />
       <Button fx:id="redo" layoutX="232.0" layoutY="412.0" mnemonicParsing="false" onAction="#redoAction" text="Redo" />
-      <Label layoutX="328.0" layoutY="14.0" prefHeight="38.0" prefWidth="447.0" text="Project Team Formation Program" textAlignment="RIGHT" textFill="#1a598c">
+      <Label layoutX="339.0" layoutY="14.0" prefHeight="38.0" prefWidth="447.0" text="Project Team Formation Program" textAlignment="RIGHT" textFill="#1a598c">
          <font>
             <Font name="Eras Medium ITC" size="28.0" />
          </font>
