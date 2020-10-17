@@ -225,11 +225,7 @@ public class Controller {
 	@FXML
 	private Button Caculation;
 	
-    @FXML
-    private Label sd1;
 
-    @FXML
-    private Label sd3;
 
 	@FXML
 	private ChoiceBox<Student> Studentbox;
@@ -517,8 +513,20 @@ public class Controller {
 		
 		
 		//display the SD for AverageCompetencyLevel
-		double []result = {t1.getAverageCompetencyLevel(),t2.getAverageCompetencyLevel(),t3.getAverageCompetencyLevel(),t4.getAverageCompetencyLevel(),t5.getAverageCompetencyLevel()};
-		sd3.setText("Stander Deviation: " + StanderDeviation.calculateSD(result));
+		
+		double []result3 = {t1.getAverageCompetencyLevel(),t2.getAverageCompetencyLevel(),t3.getAverageCompetencyLevel(),t4.getAverageCompetencyLevel(),t5.getAverageCompetencyLevel()};
+		xaxis3.setLabel("Stander Deviation: " + StanderDeviation.calculateSD(result3));
+		
+		
+		//display the SD for skillgap
+		double []result = {t1.getSkillgap(),t2.getSkillgap(),t3.getSkillgap(),t4.getSkillgap(),t5.getSkillgap()};
+		xaxis1.setLabel("Stander Deviation: " + StanderDeviation.calculateSD(result));
+				
+				
+		//display the SD for preference persentage
+		double []result2 = {t1.getPerCenTageStu(),t2.getPerCenTageStu(),t3.getPerCenTageStu(),t4.getPerCenTageStu(),t5.getPerCenTageStu()};
+		xaxis2.setLabel("Stander Deviation: " + StanderDeviation.calculateSD(result2));
+
 
 	}
 

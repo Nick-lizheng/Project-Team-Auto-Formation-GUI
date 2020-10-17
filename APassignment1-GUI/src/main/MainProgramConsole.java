@@ -6,7 +6,7 @@ import model.DataHandler;
 
 public class MainProgramConsole {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 	
 		DataHandler dh = new DataHandler();
 		dh.readAll();

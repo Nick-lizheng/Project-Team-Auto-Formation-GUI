@@ -2,18 +2,16 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.io.BufferedOutputStream;
+import Exception.InvalidMemberException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -36,6 +34,7 @@ public class DataHandler {
 	public Map<String, ProjectOwner> projectOwnerMap = new HashMap<String, ProjectOwner>();
 	public Map<String, Student> studentMap = new HashMap<String, Student>();
 	public ArrayList<Team> teamList = new ArrayList<Team>();
+	Map<String, Student> sMapValidator = new HashMap<String, Student>();
 
 	public void addCompany() {
 		System.out.println("Adding a company...");
@@ -504,7 +503,9 @@ public class DataHandler {
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 	}
 
-	public void formTeams() {
+	public void formTeams() throws Exception  {
+	
+		
 //		readPreference1();
 		Map<String, Student> sMap = new HashMap<String, Student>();
 
@@ -533,7 +534,14 @@ public class DataHandler {
 		System.out.print("Please select a ProjectID to assign student: Pr");
 		Scanner sc = new Scanner(System.in);
 		String projectId = "Pr" + Integer.parseInt(sc.nextLine());
-		System.out.println("Please choice priorty the students who like project first and second:");
+		
+		if(!projectList.toString().contains(projectId)) 
+			{
+			System.err.println("there has not this project, please choose again.");
+			return;
+			}
+			
+		System.out.println("Please choice priorty the students who like project first and second:");	
 
 		int sum = 0;
 
@@ -547,23 +555,37 @@ public class DataHandler {
 			}
 			System.out.println("Above is student and project preference maching table.");
 			System.out.print("Please assign " + (sum + 1) + " of 4 studentID: S");
+			
 			String sutdentId = "S" + Integer.parseInt(sc.nextLine());
-			Iterator<Student> iterator = studentSkillSetList.iterator();
-			while (iterator.hasNext()) {
-				Student s = iterator.next();
-				if (s.getId().equals(sutdentId)) {
-					for (Student student : studentSkillSetList) {
-						if (student.getId().equals(sutdentId)) {
-							sMap.put(sutdentId, student);
+			try {
+				if(sMapValidator.containsKey(sutdentId)) {
+					throw new InvalidMemberException(sutdentId);
+					
+				}else{
+					Iterator<Student> iterator = studentSkillSetList.iterator();
+					while (iterator.hasNext()) {
+						Student s = iterator.next();
+						if (s.getId().equals(sutdentId)) {
+							for (Student student : studentSkillSetList) {
+								if (student.getId().equals(sutdentId)) {
+									sMap.put(sutdentId, student);
+									sMapValidator.putAll(sMap);
+								}
+
+							}
+
+							iterator.remove();
+							System.out.println("Added " + (sum + 1) + " of 4 student in " + projectId + "'s Team!");
 						}
 
 					}
-
-					iterator.remove();
-					System.out.println("Added " + (sum + 1) + " of 4 student in " + projectId + "'s Team!");
 				}
-
+			}catch(InvalidMemberException e) {
+				System.err.println(sutdentId+" is already in some team, please choose anohter student to add.");
+				continue;
 			}
+			
+			
 			sum++;
 		}
 
@@ -607,8 +629,10 @@ public class DataHandler {
 				System.out.println("Analytics: " + team.getAveStuSkillForA());
 				System.out.println("Web: " + team.getAveStuSkillForW());
 				System.out.println(team.getProject().getId()+":" + team.getPerCenTageStu()+"%");
-				System.out.println("Team skill shortfall: "+team.getSkillShortfall());
-				al.add(team.getSkillShortfall());			
+//				System.out.println("Team skill shortfall: "+team.getSkillShortfall());
+				System.out.println("Team skill shortfall: "+team.getSkillgap());
+//				al.add(team.getSkillShortfall());
+				al.add(team.getSkillgap());	
 				System.out.println("========================================================================");
 
 			}						
