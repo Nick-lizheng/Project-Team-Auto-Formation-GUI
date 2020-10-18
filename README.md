@@ -3,4 +3,4 @@
 Author: Li Zheng
 Date:2020.7
 
-The knowleage including the JAVAFX, DB, Collection,Stack, Agro.
+The knowleage including the JAVAFX, DB, Collection,Stack, heuristic techniques.
