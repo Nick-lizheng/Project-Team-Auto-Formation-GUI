@@ -13,7 +13,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -42,17 +41,11 @@ public class Controller {
 	Team t3;
 	Team t4;
 	Team t5;
-//	HashMap<String, CheckBox> swapCheckBox = new HashMap<String, CheckBox>();
 	List<CheckBox> swapCheckBox = new ArrayList<CheckBox>();
 	List<String> swapCheckBox1 = new ArrayList<String>();
 	HashMap<String, Map<String, Student>> swapMap = new HashMap<String, Map<String, Student>>();
 	HashMap<String, CheckBox> checkBoxMap = new HashMap<String, CheckBox>();
 	HashMap<String, TextField> textMap = new HashMap<String, TextField>();
-//	Map<String, Student> sMap1 = new HashMap<String, Student>();
-//	Map<String, Student> sMap2 = new HashMap<String, Student>();
-//	Map<String, Student> sMap3 = new HashMap<String, Student>();
-//	Map<String, Student> sMap4 = new HashMap<String, Student>();
-//	Map<String, Student> sMap5 = new HashMap<String, Student>();
 	Map<String, Student> allStudents = new HashMap<String, Student>();
 
 	ObservableList<Student> list1 =FXCollections.observableArrayList();
@@ -261,27 +254,6 @@ public class Controller {
 		checkBoxMap.put("t52", team5checkbox2);
 		checkBoxMap.put("t53", team5checkbox3);
 		checkBoxMap.put("t54", team5checkbox4);
-//		swapMap.put("t11", sMap1);
-//		swapMap.put("t12", sMap1);
-//		swapMap.put("t13", sMap1);
-//		swapMap.put("t14", sMap1);
-//		swapMap.put("t21", sMap2);
-//		swapMap.put("t22", sMap2);
-//		swapMap.put("t23", sMap2);
-//		swapMap.put("t24", sMap2);
-//		swapMap.put("t31", sMap3);
-//		swapMap.put("t32", sMap3);
-//		swapMap.put("t33", sMap3);
-//		swapMap.put("t34", sMap3);
-//		swapMap.put("t41", sMap4);
-//		swapMap.put("t42", sMap4);
-//		swapMap.put("t43", sMap4);
-//		swapMap.put("t44", sMap4);
-//		swapMap.put("t51", sMap5);
-//		swapMap.put("t52", sMap5);
-//		swapMap.put("t53", sMap5);
-//		swapMap.put("t54", sMap5);
-
 
 
 		//read from DB
@@ -291,17 +263,13 @@ public class Controller {
 		dh.projectList = DBDataHandler.projectList;
 		dh.teamList = DBDataHandler.teamList;
 
-		// read the data from milestone2
-//		dh.readAll();
-//		dh.readFormTeam();
-
 		// add student in ChoiceBox
 		for (Student s : dh.studentSkillSetList) {
 			Studentbox.getItems().addAll(s);
 			allStudents.put(s.getId(), s);
 		}
 
-		// setting the Barchar.
+		// setting the Bar chart.
 		xaxis1.setLabel("Skill Gap");
 		yaxis1.setLabel("Number of Gap");
 		xaxis2.setLabel("The percentage of getting 1st and 2nd preference");
@@ -318,7 +286,7 @@ public class Controller {
 			team5ProID.setText(dh.projectList.get(4).getId() + " " + dh.projectList.get(4).getRanking());
 		}
 
-//		 add checkbox at eventlistenter.
+//		 add check box at event listener.
 		for (String s : checkBoxMap.keySet()) {
 			checkBoxMap.get(s).selectedProperty()
 					.addListener((ObservableValue<? extends Boolean> ov, Boolean old_val, Boolean new_val) -> {
@@ -342,7 +310,7 @@ public class Controller {
 
 		}
 
-		// teableview setting
+		// table view setting
 		tableTeam.setEditable(true);
 		studentid.setCellValueFactory(new PropertyValueFactory<Student,String>("id"));
 		skillset.setCellValueFactory(new PropertyValueFactory<Student,String>("skillset"));
@@ -350,7 +318,7 @@ public class Controller {
 		confic.setCellValueFactory(new PropertyValueFactory<Student,String>("conflict"));
 		preference.setCellValueFactory(new PropertyValueFactory<Student,String>("preferences"));
 		competencylevel.setCellValueFactory(new PropertyValueFactory<Student,Double>("competencyLevel"));
-//		skillgap.setCellValueFactory(new PropertyValueFactory<Student,String>("skillgap"));
+
 
 		initUIFromData();
 	}
@@ -365,31 +333,6 @@ public class Controller {
 					CommandManager manager = CommandManager.getInstance();
 					manager.execute(new AddAction("Add "+s+","+Studentbox.getValue(),s,checkBoxMap.get(s),Studentbox,Studentbox.getValue(),t1.getStudentMap(),t2.getStudentMap(),t3.getStudentMap(),t4.getStudentMap(),t5.getStudentMap()));
 
-//					checkBoxMap.get(s).setText(Studentbox.getValue().getId().toUpperCase());
-//					checkBoxMap.get(s).setSelected(false);
-//					if (s.substring(0, 2).equals("t1")) {
-//						sMap1.put(checkBoxMap.get(s).getText(), Studentbox.getValue());
-//						System.out.println(s.substring(0, 2));
-//						System.out.println(sMap1);
-//					} else if (s.substring(0, 2).equals("t2")) {
-//						sMap2.put(checkBoxMap.get(s).getText(), Studentbox.getValue());
-//						System.out.println(s.substring(0, 2));
-//						System.out.println(sMap2);
-//					} else if (s.substring(0, 2).equals("t3")) {
-//						sMap3.put(checkBoxMap.get(s).getText(), Studentbox.getValue());
-//						System.out.println(s.substring(0, 2));
-//						System.out.println(sMap3);
-//					} else if (s.substring(0, 2).equals("t4")) {
-//						sMap4.put(checkBoxMap.get(s).getText(), Studentbox.getValue());
-//						System.out.println(s.substring(0, 2));
-//						System.out.println(sMap4);
-//					} else {
-//						sMap5.put(checkBoxMap.get(s).getText(), Studentbox.getValue());
-//						System.out.println(s.substring(0, 2));
-//						System.out.println(sMap5);
-//					}
-//
-//					Studentbox.getItems().remove(Studentbox.getValue());
 				} else if (checkBoxMap.get(s).isSelected() && !checkBoxMap.get(s).getText().isEmpty()) {
 					Alert alert = new Alert(AlertType.ERROR);
 					alert.setContentText(ErrorMessages.STUDENT_ALREADY_ADDED);
@@ -402,12 +345,6 @@ public class Controller {
 			alert.show();
 
 		}
-
-//		t1 = new Team(dh.projectList.get(0), sMap1);
-//		t2 = new Team(dh.projectList.get(1), sMap2);
-//		t3 = new Team(dh.projectList.get(2), sMap3);
-//		t4 = new Team(dh.projectList.get(3), sMap4);
-//		t5 = new Team(dh.projectList.get(4), sMap5);
 
 		System.out.println("add a student in a team");
 	}
@@ -536,41 +473,8 @@ public class Controller {
 		CommandManager manager = CommandManager.getInstance();
 		manager.execute(new DeleteAction("Delete ",checkBoxMap,dh,Studentbox,t1.getStudentMap(),t2.getStudentMap(),t3.getStudentMap(),t4.getStudentMap(),t5.getStudentMap()));
 
-//		for (String s : checkBoxMap.keySet()) {
-//			if (checkBoxMap.get(s).isSelected()) {
-//
-//
-//				for (Student student : dh.studentSkillSetList) {
-//					if (student.getId().equals(checkBoxMap.get(s).getText()))
-//						Studentbox.getItems().add(student);
-//				}
-//
-//				if (s.substring(0, 2).equals("t1")) {
-//
-//					sMap1.remove(checkBoxMap.get(s).getText());
-//					System.out.println(sMap1);
-//				} else if (s.substring(0, 2).equals("t2")) {
-//					sMap2.remove(checkBoxMap.get(s).getText());
-//					System.out.println(sMap2);
-//				} else if (s.substring(0, 2).equals("t3")) {
-//					sMap3.remove(checkBoxMap.get(s).getText());
-//					System.out.println(sMap3);
-//				} else if (s.substring(0, 2).equals("t4")) {
-//					sMap4.remove(checkBoxMap.get(s).getText());
-//					System.out.println(sMap4);
-//				} else {
-//					sMap5.remove(checkBoxMap.get(s).getText());
-//					System.out.println(sMap5);
-//				}
-//				checkBoxMap.get(s).setText("");
-//				checkBoxMap.get(s).setSelected(false);
-//			}
-//
-//		}
-
 	}
-	
-	
+		
 	
     @FXML
     void team1detail(MouseEvent event) {
@@ -622,7 +526,7 @@ public class Controller {
 			list5.add(t5.getStudentMap().get(stu1));
 		}
 		tableTeam.setItems(list5);
-		//below is for backend test
+		//below is for back end test
 		for(String s : t5.getStudentMap().keySet()) {
 			System.out.println(t5.getStudentMap().get(s));
 			System.out.println(t5.getStudentMap().get(s).getCompetencyLevel());
@@ -632,46 +536,6 @@ public class Controller {
     }
 
 	public void autoSwapAction(ActionEvent actionEvent) {
-
-
-//		ArrayList<Student> studentSkillSetList = dh.studentSkillSetList;
-//
-//		Map<String, Student> sMap1 = new HashMap<String, Student>();
-//		sMap1.put(studentSkillSetList.get(0).getId().toUpperCase(), studentSkillSetList.get(0));
-//		sMap1.put(studentSkillSetList.get(1).getId().toUpperCase(), studentSkillSetList.get(1));
-//		sMap1.put(studentSkillSetList.get(2).getId().toUpperCase(), studentSkillSetList.get(2));
-//		sMap1.put(studentSkillSetList.get(3).getId().toUpperCase(), studentSkillSetList.get(3));
-//
-//		Map<String, Student> sMap2 = new HashMap<String, Student>();
-//		sMap2.put(studentSkillSetList.get(4).getId().toUpperCase(), studentSkillSetList.get(4));
-//		sMap2.put(studentSkillSetList.get(5).getId().toUpperCase(), studentSkillSetList.get(5));
-//		sMap2.put(studentSkillSetList.get(6).getId().toUpperCase(), studentSkillSetList.get(6));
-//		sMap2.put(studentSkillSetList.get(7).getId().toUpperCase(), studentSkillSetList.get(7));
-//
-//		Map<String, Student> sMap3 = new HashMap<String, Student>();
-//		sMap3.put(studentSkillSetList.get(8).getId().toUpperCase(), studentSkillSetList.get(8));
-//		sMap3.put(studentSkillSetList.get(9).getId().toUpperCase(), studentSkillSetList.get(9));
-//		sMap3.put(studentSkillSetList.get(10).getId().toUpperCase(), studentSkillSetList.get(10));
-//		sMap3.put(studentSkillSetList.get(11).getId().toUpperCase(), studentSkillSetList.get(11));
-//
-//		Map<String, Student> sMap4 = new HashMap<String, Student>();
-//		sMap4.put(studentSkillSetList.get(12).getId().toUpperCase(), studentSkillSetList.get(12));
-//		sMap4.put(studentSkillSetList.get(13).getId().toUpperCase(), studentSkillSetList.get(13));
-//		sMap4.put(studentSkillSetList.get(14).getId().toUpperCase(), studentSkillSetList.get(14));
-//		sMap4.put(studentSkillSetList.get(15).getId().toUpperCase(), studentSkillSetList.get(15));
-//
-//		Map<String, Student> sMap5 = new HashMap<String, Student>();
-//		sMap5.put(studentSkillSetList.get(16).getId().toUpperCase(), studentSkillSetList.get(16));
-//		sMap5.put(studentSkillSetList.get(17).getId().toUpperCase(), studentSkillSetList.get(17));
-//		sMap5.put(studentSkillSetList.get(18).getId().toUpperCase(), studentSkillSetList.get(18));
-//		sMap5.put(studentSkillSetList.get(19).getId().toUpperCase(), studentSkillSetList.get(19));
-//
-//		Team t1 = new Team(dh.projectList.get(0), sMap1);
-//		Team t2 = new Team(dh.projectList.get(1), sMap2);
-//		Team t3 = new Team(dh.projectList.get(2), sMap3);
-//		Team t4 = new Team(dh.projectList.get(3), sMap4);
-//		Team t5 = new Team(dh.projectList.get(4), sMap5);
-//
 
 		//add thread
 		Thread autoThread=new Thread(){
@@ -687,25 +551,6 @@ public class Controller {
 				double gap=Double.MAX_VALUE;
 				ArrayList<Team> calcTeams=swapTeamMaxMaxAndTeamMinMin(teams,gap);
 
-//				Platform.runLater(new Runnable() {
-//					@Override
-//					public void run() {
-//						//set ui
-//						for (int i = 0; i < calcTeams.size(); i++) {
-//							Team team=calcTeams.get(i);
-//							Map<String, Student> sMap=team.getStudentMap();
-//							int j=0;
-//							for(String str: sMap.keySet()) {
-//								j=j+1;
-//								String checkBoxKeyStr="t"+(i+1)+""+j;
-//								CheckBox checkBox=checkBoxMap.get(checkBoxKeyStr);
-//								Student student=sMap.get(str);
-//								checkBox.setText(student.getId().toUpperCase());
-//								Studentbox.getItems().remove(student);
-//							}
-//						}
-//					}
-//				});
 			}
 		};
 		autoThread.setDaemon(true);

@@ -191,35 +191,7 @@ public class Team implements Serializable {
 		this.perCenTageStu = perCenTageStu;
 	}
 
-//	public double getSkillShortfall() {
-//		double P,W,A,N;				
-//		P=(getProject().getRankingMap().get("P")-getAveStuSkillForP());
-//		W=(getProject().getRankingMap().get("W")-getAveStuSkillForW());
-//		A=(getProject().getRankingMap().get("A")-getAveStuSkillForA());
-//		N=(getProject().getRankingMap().get("N")-getAveStuSkillForN());
-//		
-//		if(P<0) {
-//			P=0;
-//		}
-//		
-//		if(W<0) {
-//			W=0;
-//		}
-//		
-//		if(A<0) {
-//			A=0;
-//		}
-//		
-//		if(N<0) {
-//			N=0;
-//		}	
-//		
-//		double sum = P+W+A+N;
-//		setSkillShortfall(sum/4);
-//		
-//		
-//		return skillShortfall;
-//	}
+
 	
 	
 
