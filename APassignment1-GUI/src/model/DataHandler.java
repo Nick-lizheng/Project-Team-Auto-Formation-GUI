@@ -505,6 +505,8 @@ public class DataHandler {
 
 	public void formTeams() throws Exception  {
 	
+		try {
+			
 		
 //		readPreference1();
 		Map<String, Student> sMap = new HashMap<String, Student>();
@@ -615,6 +617,9 @@ public class DataHandler {
 //		readFromFile("FormTeam.txt");
 
 		return;
+		}catch(NumberFormatException nex) {
+			System.err.println("Please input number, please try again!!");
+		}
 	}
 
 	public void disPlayTeamFinessMetrics() {
