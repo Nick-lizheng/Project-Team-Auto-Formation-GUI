@@ -24,17 +24,17 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class DataHandler {
-	Map<String,Project> projectValidator = new HashMap<String,Project>();
-	public ArrayList<Student> studentList = new ArrayList<Student>();
-	public ArrayList<Student> studentSkillSetList = new ArrayList<Student>();
-	public Set<Student> studentSet = new HashSet<Student>();
-	public ArrayList<Project> projectList = new ArrayList<Project>();
-	public Map<String, Integer> projectMap = new HashMap<String, Integer>();
-	public Set<Company> companySet = new HashSet<Company>();
-	public Map<String, ProjectOwner> projectOwnerMap = new HashMap<String, ProjectOwner>();
-	public Map<String, Student> studentMap = new HashMap<String, Student>();
-	public ArrayList<Team> teamList = new ArrayList<Team>();
-	Map<String, Student> sMapValidator = new HashMap<String, Student>();
+	Map<String, Project> projectValidator = new HashMap<>();
+	public ArrayList<Student> studentList = new ArrayList<>();
+	public ArrayList<Student> studentSkillSetList = new ArrayList<>();
+	public Set<Student> studentSet = new HashSet<>();
+	public ArrayList<Project> projectList = new ArrayList<>();
+	public Map<String, Integer> projectMap = new HashMap<>();
+	public Set<Company> companySet = new HashSet<>();
+	public Map<String, ProjectOwner> projectOwnerMap = new HashMap<>();
+	public Map<String, Student> studentMap = new HashMap<>();
+	public ArrayList<Team> teamList = new ArrayList<>();
+	Map<String, Student> sMapValidator = new HashMap<>();
 
 	public void addCompany() {
 		System.out.println("Adding a company...");
@@ -141,7 +141,7 @@ public class DataHandler {
 	}
 
 	public void addProject() {
-		
+
 		System.out.println("Adding a Project...");
 		Scanner scan = new Scanner(System.in);
 		while (true)
@@ -181,19 +181,14 @@ public class DataHandler {
 //						+"A"+project.getRankingMap().get("A")+" "+"W"+project.getRankingMap().get("W");	
 //				project.setRanking(ranking);
 
-				
-				if(!projectValidator.keySet().contains(id)) {
+				if (!projectValidator.keySet().contains(id)) {
 					projectValidator.put(project.getId(), project);
 					writeToFile(project);
-				}else {
+				} else {
 					System.err.println(" The ProjectID hava already exists!, please try another one.");
 					System.err.println("");
 					continue;
 				}
-				
-				
-				
-				
 
 				return;
 			} catch (NumberFormatException nex) {
@@ -210,7 +205,7 @@ public class DataHandler {
 		System.out.println("The current working directory is " + currentDirectory);
 		File file = new File("studentinfo.txt");
 
-		if (file.exists()&&studentSkillSetList.isEmpty()) {
+		if (file.exists() && studentSkillSetList.isEmpty()) {
 			readFile("studentinfo.txt");
 			System.out.println("Available students " + studentSkillSetList.size());
 			for (Student s : studentSkillSetList) {
@@ -354,7 +349,7 @@ public class DataHandler {
 	public void addStudentPreferences() {
 		boolean found = false;
 		File file = new File("studentinfo.txt");
-		if (file.exists()&&studentSkillSetList.isEmpty()) {
+		if (file.exists() && studentSkillSetList.isEmpty()) {
 			readFile("studentinfo.txt");
 
 		} else {
@@ -503,17 +498,16 @@ public class DataHandler {
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 	}
 
-	public void formTeams() throws Exception  {
-	
-		try {
-			
-		
-//		readPreference1();
-		Map<String, Student> sMap = new HashMap<String, Student>();
+	public void formTeams() throws Exception {
 
-		for (Project p : projectList) {
-			System.out.println("Title :" + p.getTitle());
-			System.out.println("ProjectID :" + p.getId() + " Ranking :" + p.getRanking());
+		try {
+
+//		readPreference1();
+			Map<String, Student> sMap = new HashMap<String, Student>();
+
+			for (Project p : projectList) {
+				System.out.println("Title :" + p.getTitle());
+				System.out.println("ProjectID :" + p.getId() + " Ranking :" + p.getRanking());
 //			for (Student s : studentList) {
 //				if (s.getPreferences().contains(p.getId())) {
 //
@@ -525,99 +519,97 @@ public class DataHandler {
 //					System.out.println(s.getId() + " " + s.getPreferences());
 //				}
 //			}
-			System.out.println();
-		}
-
-		for (Student s : studentSkillSetList) {
-			System.out.println(
-					s.getId() + " " + s.getPreferences() + " " + "Personality Type:" + s.getPersionalityType());
-		}
-
-		System.out.print("Please select a ProjectID to assign student: Pr");
-		Scanner sc = new Scanner(System.in);
-		String projectId = "Pr" + Integer.parseInt(sc.nextLine());
-		
-		if(!projectList.toString().contains(projectId)) 
-			{
-			System.err.println("there has not this project, please choose again.");
-			return;
+				System.out.println();
 			}
-			
-		System.out.println("Please choice priorty the students who like project first and second:");	
-
-		int sum = 0;
-
-		while (sum < 4) {
 
 			for (Student s : studentSkillSetList) {
-				if (s.getPreferences().contains(projectId)) {
-					System.out.println(s.getId() + " " + s.getPreferences() + " " + s.getPersionalityType());
-
-				}
+				System.out.println(
+						s.getId() + " " + s.getPreferences() + " " + "Personality Type:" + s.getPersionalityType());
 			}
-			System.out.println("Above is student and project preference maching table.");
-			System.out.print("Please assign " + (sum + 1) + " of 4 studentID: S");
-			
-			String sutdentId = "S" + Integer.parseInt(sc.nextLine());
-			try {
-				if(sMapValidator.containsKey(sutdentId)) {
-					throw new InvalidMemberException(sutdentId);
-					
-				}else{
-					Iterator<Student> iterator = studentSkillSetList.iterator();
-					while (iterator.hasNext()) {
-						Student s = iterator.next();
-						if (s.getId().equals(sutdentId)) {
-							for (Student student : studentSkillSetList) {
-								if (student.getId().equals(sutdentId)) {
-									sMap.put(sutdentId, student);
-									sMapValidator.putAll(sMap);
-								}
 
-							}
+			System.out.print("Please select a ProjectID to assign student: Pr");
+			Scanner sc = new Scanner(System.in);
+			String projectId = "Pr" + Integer.parseInt(sc.nextLine());
 
-							iterator.remove();
-							System.out.println("Added " + (sum + 1) + " of 4 student in " + projectId + "'s Team!");
-						}
+			if (!projectList.toString().contains(projectId)) {
+				System.err.println("there has not this project, please choose again.");
+				return;
+			}
+
+			System.out.println("Please choice priorty the students who like project first and second:");
+
+			int sum = 0;
+
+			while (sum < 4) {
+
+				for (Student s : studentSkillSetList) {
+					if (s.getPreferences().contains(projectId)) {
+						System.out.println(s.getId() + " " + s.getPreferences() + " " + s.getPersionalityType());
 
 					}
 				}
-			}catch(InvalidMemberException e) {
-				System.err.println(sutdentId+" is already in some team, please choose anohter student to add.");
-				continue;
+				System.out.println("Above is student and project preference maching table.");
+				System.out.print("Please assign " + (sum + 1) + " of 4 studentID: S");
+
+				String sutdentId = "S" + Integer.parseInt(sc.nextLine());
+				try {
+					if (sMapValidator.containsKey(sutdentId)) {
+						throw new InvalidMemberException(sutdentId);
+
+					} else {
+						Iterator<Student> iterator = studentSkillSetList.iterator();
+						while (iterator.hasNext()) {
+							Student s = iterator.next();
+							if (s.getId().equals(sutdentId)) {
+								for (Student student : studentSkillSetList) {
+									if (student.getId().equals(sutdentId)) {
+										sMap.put(sutdentId, student);
+										sMapValidator.putAll(sMap);
+									}
+
+								}
+
+								iterator.remove();
+								System.out.println("Added " + (sum + 1) + " of 4 student in " + projectId + "'s Team!");
+							}
+
+						}
+					}
+				} catch (InvalidMemberException e) {
+					System.err.println(sutdentId + " is already in some team, please choose anohter student to add.");
+					continue;
+				}
+
+				sum++;
 			}
-			
-			
-			sum++;
-		}
 
-		Team team;
+			Team team;
 
-		for (Project p : projectList) {
-			if (p.getId().equals(projectId)) {
-				System.out.println(p.getTitle() + "," + p.getId() + "," + sMap.keySet());
-				team = new Team(p, sMap);
-				teamList.add(team);
+			for (Project p : projectList) {
+				if (p.getId().equals(projectId)) {
+					System.out.println(p.getTitle() + "," + p.getId() + "," + sMap.keySet());
+					team = new Team(p, sMap);
+					teamList.add(team);
 
+				}
 			}
-		}
 
-		Iterator<Project> iterator = projectList.iterator();
-		while (iterator.hasNext()) {
-			Project p = iterator.next();
-			if (p.getId().equals(projectId)) {
-				iterator.remove();
+			Iterator<Project> iterator = projectList.iterator();
+			while (iterator.hasNext()) {
+				Project p = iterator.next();
+				if (p.getId().equals(projectId)) {
+					iterator.remove();
+				}
 			}
-		}
-		WriteToFileFromTeam(teamList);
-		System.out.println();
+			WriteToFileFromTeam(teamList);
+			System.out.println();
 
 //		studentSkillSetList.clear();
 
 //		readFromFile("FormTeam.txt");
 
-		return;
-		}catch(NumberFormatException nex) {
+			return;
+		} catch (NumberFormatException nex) {
 			System.err.println("Please input number, please try again!!");
 		}
 	}
@@ -626,27 +618,26 @@ public class DataHandler {
 		if (!teamList.isEmpty()) {
 			System.out.println("Average student skill competency for each project team:");
 			List<Double> al = new ArrayList<Double>();
-			
+
 			for (Team team : teamList) {
 				System.out.print(team);
 				System.out.println("Programming: " + team.getAveStuSkillForP());
 				System.out.println("Networking: " + team.getAveStuSkillForN());
 				System.out.println("Analytics: " + team.getAveStuSkillForA());
 				System.out.println("Web: " + team.getAveStuSkillForW());
-				System.out.println(team.getProject().getId()+":" + team.getPerCenTageStu()+"%");
+				System.out.println(team.getProject().getId() + ":" + team.getPerCenTageStu() + "%");
 //				System.out.println("Team skill shortfall: "+team.getSkillShortfall());
-				System.out.println("Team skill shortfall: "+team.getSkillgap());
+				System.out.println("Team skill shortfall: " + team.getSkillgap());
 //				al.add(team.getSkillShortfall());
-				al.add(team.getSkillgap());	
+				al.add(team.getSkillgap());
 				System.out.println("========================================================================");
 
-			}						
-			 double[] target = new double[al.size()];
-			 for (int i = 0; i < target.length; i++) {			   
-			    target[i] = al.get(i);                // java 1.5+ style (outboxing)
-			 }
-			System.out.println("StanderDeviation: "+StanderDeviation.calculateSD(target));
-			
+			}
+			double[] target = new double[al.size()];
+			for (int i = 0; i < target.length; i++) {
+				target[i] = al.get(i); // java 1.5+ style (outboxing)
+			}
+			System.out.println("StanderDeviation: " + StanderDeviation.calculateSD(target));
 
 		} else {
 			System.err.println("Please run the FormTeam First!");
@@ -912,7 +903,10 @@ public class DataHandler {
 				}
 			} else if (type.equals("preference")) {
 				for (Student s : studentSkillSetList) {
-					if (!s.getPreferences().isBlank()) {
+					/**
+					 * here just change isblank to isEmpty
+					 */
+					if (!s.getPreferences().isEmpty()) {
 						bw.write(s.getId() + "\n");
 						bw.write(s.getPreferences() + "\n");
 					}
@@ -1095,12 +1089,10 @@ public class DataHandler {
 		}
 
 	}
-	
-	
 
 	public void readFormTeam() {
 		Team t = null;
-		
+
 		try {
 			FileInputStream fileIn = new FileInputStream("FormTeam_serialize.txt");
 			ObjectInputStream in = new ObjectInputStream(fileIn);
